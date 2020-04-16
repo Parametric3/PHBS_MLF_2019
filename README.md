@@ -169,10 +169,24 @@ We get the training accuracy: 0.966 and test accuracy: 0.972. Important features
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="330" width="850"/>
 </div>
 
-Through 5-folds cross-validation, we get F1- score 80.53%, which is quite nice.
-### 5. GBRT (Gradient Boost Regression Tree)--boosting</p>
+Through 5-folds cross-validation, we get F1- score 80.53%, which is quite nice. As the ROC curve shows, AUC is 0.91.
 
-### 6. RF+GBRT</p>
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.png" height="330" width="850"/>
+</div>
+
+### 5. GBRT (Gradient Boost Regression Tree)--boosting</p>
+We get the training accuracy: 0.925 and test accuracy: 0.989. AUC is 0.65.
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.png" height="330" width="850"/>
+</div>
+
+## Future Work
+1. Introduce interaction terms;</p>
+2. Try combination of models;</p>
+Example (Source: Tianchi Bigdata)
+### RF+GBRT</p>
 **Combination1**</p>
 a. Use RF to train, output is y_rf;</p>
 b. Use GBRT to train under y-y_rf;</p>
@@ -189,15 +203,10 @@ c. Use the average of multiple GBRT outputs when predict.</p>
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/RF+GBRT2.png" height="330" width="450"/>
 </div>
 
-###7. GBRT+LR</p>
-Stucture/depth/learning rate/iteration are decided by Gredient Search</p>
+### GBRT+LR</p>
+Stucture/depth/learning rate/iteration are adjusted accordingly</p>
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/LR+GBRT.png" height="330" width="650"/>
 </div>
 
-## Metrics
-ROC curve</p>
-AUC</p>
-## Future Work
-1. Introduce interaction terms;</p>
-2. Optimize the parameters in the model;</p>
+3. Optimize the parameters in the model using gradient search;</p>

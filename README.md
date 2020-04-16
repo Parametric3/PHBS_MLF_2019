@@ -157,7 +157,7 @@ When C=0.01, there're 25 features selected, including 'number of buying actions'
 ### 2. PCA + Logistic Regression
 Choose 2 principle components can explain more than 90% of the variance in the model, then do Logistic Regression. We get the training accuracy: 0.901 and test accuracy: 0.995. We wonder why 1&w both use logistic regression but get totally different results. Also, PCA reflects that the variables have multicollinearity problem.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="400" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="650"/>
 </div>
 
 ### 3. SVM</p>
@@ -172,14 +172,14 @@ We get the training accuracy: 0.966 and test accuracy: 0.972. Important features
 Through 5-folds cross-validation, we get F1- score 80.53%, which is quite nice. As the ROC curve shows, AUC is 0.91.
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="400" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="650"/>
 </div>
 
 ### 5. GBRT (Gradient Boost Regression Tree)--boosting</p>
 We get the training accuracy: 0.925 and test accuracy: 0.989. AUC is 0.65.
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="400" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="650"/>
 </div>
 
 ### Conclusion
@@ -203,7 +203,7 @@ a. Use RF to get random features;</p>
 b. Use GBRT for those features;</p>
 c. Use the average of multiple GBRT outputs when predict.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/RF+GBRT2.png" height="300" width="550"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/RF+GBRT2.png" height="300" width="600"/>
 </div>
 
 ### GBRT+LR</p>

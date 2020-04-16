@@ -98,7 +98,7 @@ Feature name| type | Explaination
 2_item_buypeople|statistic| number of users who purchased the product in the two days(the number of people who have been deduplicated)
 2_item_viewpeople|statistic| number of users who viewed the product in the two days(the number of people who have been deduplicated)
 2_item_collectpeople|statistic| number of users who collected the product in the two days(the number of people who have been deduplicated)
-2_item_addpeople|statistic number of users who carted the product in the two days(the number of people who have been deduplicated)
+2_item_addpeople|statistic| number of users who carted the product in the two days(the number of people who have been deduplicated)
 2_item_frequentbuypeople|statistic|number of users who make multiple purchases in the two days
 2_item_frequentviewpeople|statistic|number of users who viewed the product multiple times in the two days
 2_item_frequentcollectpeople|statistic|number of users who collected the product multiple times in the two days
@@ -128,6 +128,8 @@ Feature name| type | Explaination
 4_geo_buyview|ratio|ratio of total number of products purchased in the area to total number of products viewed in the area
 4_geo_buycollect|ratio|ratio of total number of products purchased in the area to total number of products collected in the area
 4_geo_buyadd|ratio|ratio of total number of products purchased in the area to total number of products carted in the area
+
+Note: some ratio-based indicators in this article have missing indicator data because the denominator is 0. For such indicators, the missing value is filled with 0.
 
 ### Interactive Features
 

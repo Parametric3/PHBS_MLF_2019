@@ -87,7 +87,7 @@ Feature name| type | Explaination
 1_time_lag|time|the time lag between first online and last time online
 1_the_behavior_frequency|time|time lag over the total number of activities
 
-2. **Item features** (Feature type = 1):
+2. **Item features** (Feature type = 2):
 
 Feature name| type | Explaination
 ---|---|---
@@ -127,14 +127,14 @@ Feature name| type | Explaination
 返车率 （周期内多次加购物车的用户数/ 加购物车人数）
 2_item_frequentaddpeople_addpeople
 
-3. **Category features** (Feature type = 1):
+3. **Category features** (Feature type = 3):
 
 Feature name| type | Explaination
 ---|---|---
 3_number_of_categories_related|statistic|number of categories that user had interaction with
 3_category_concentration_rate|ratio|number of items related over number of categories related
 
-4. **Geo features** (Feature type = 1):
+4. **Geo features** (Feature type = 4):
 Feature name| type | Explaination
 ---|---|---
 

@@ -88,6 +88,7 @@ Feature name| type | Explaination
 1_the_behavior_frequency|time|time lag over the total number of activities
 
 2. Item features (Feature type = 1):
+
 Feature name| type | Explaination
 ---|---|---
 2_item_buy|statistic|The number of times the product was purchased in the two days

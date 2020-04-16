@@ -95,7 +95,7 @@ Feature name| type | Explaination
 2_item_view|statistic| number of times the product was viewed in the two days
 2_item_collect|statistic| number of times the product was collected in the two days
 2_item_add|statistic| number of times the product was carted in the two days
-2_item_buypeople|statistic| number of users who purchased the product in the two days(the number of people who have been deduplicated )
+2_item_buypeople|statistic| number of users who purchased the product in the two days(the number of people who have been deduplicated)
 2_item_viewpeople|statistic| number of users who viewed the product in the two days(the number of people who have been deduplicated)
 2_item_collectpeople|statistic| number of users who collected the product in the two days(the number of people who have been deduplicated)
 2_item_addpeople|statistic number of users who carted the product in the two days(the number of people who have been deduplicated)
@@ -109,15 +109,10 @@ Feature name| type | Explaination
 2_item_buypeople_viewpeople|ratio|ratio of number of users who purchased the product in the two days to number of users who viewed the product in the two days (the number of people who have been deduplicated)
 2_item_buypeople_collectpeople|ratio|ratio of number of users who purchased the product in the two days to number of users who collected the product in the two days (the number of people who have been deduplicated)
 2_item_buypeople_addpeople|ratio|ratio of number of users who purchased the product in the two days to number of users who carted the product in the two days (the number of people who have been deduplicated)
-2_item_frequentbuypeople_buypeople|ratio|ratio of number of users who make multiple purchases in the two days to number of users who purchased the product in the two days
-
-返客率（周期内多次购买的用户数/购买人数）2_item_frequentbuypeople_buypeople
-返访率 （周期内多次访问的用户数/访问人数）
-2_item_frequentviewpeople_viewpeople
-返藏率 （周期内多次收藏的用户数/收藏人数）
-2_item_frequentcollectpeople_collectpeople
-返车率 （周期内多次加购物车的用户数/ 加购物车人数）
-2_item_frequentaddpeople_addpeople
+2_item_frequentbuypeople_buypeople|ratio|ratio of number of users who make multiple purchases in the two days to number of users who purchased the product in the two days (the number of people who have been deduplicated)
+2_item_frequentviewpeople_viewpeople|ratio|ratio of number of users who viewed the product multiple times in the two days to number of users who viewed the product in the two days (the number of people who have been deduplicated)
+2_item_frequentcollectpeople_collectpeople|ratio|ratio of number of users who collected the product multiple times in the two days to number of users who collected the product in the two days (the number of people who have been deduplicated)
+2_item_frequentaddpeople_addpeople|ratio|ratio of number of users who carted the product multiple times in the two days to number of users who carted the product in the two days (the number of people who have been deduplicated)
 
 3. **Category features** (Feature type = 3):
 

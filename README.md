@@ -141,9 +141,10 @@ Feature name| type | Explaination
 ## Model Building
 ### Imbalanced Sample: Up&downsampling</p>
 Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
+P.S. We standardized the data before sampling.
 ### 1. Lasso Logistic Regression</p>
 Use L1 regularization to achieve variable selection</p>
-result</p>
+When C=0.001, there're 17 features selected, including 'number of buying actions', 'ratio of purchases to collects', which quite make sense. We get the training accuracy: 0.914 and test accuracy: 0.481</p>
 ### 2. PCA + Logistic Regression
 Choose n principle components can explain more than 90% of the variance in the model, then do Logistic Regression</p>
 pca gragh</p>

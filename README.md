@@ -51,32 +51,32 @@ Three ways to choose test set:</p>
 
 ### Train Set
 The basic rules all the same for train set. Two things to consider:</p>
-1. As customary, we set the ratio between the training set and the test set to be 4:1. So since we have choose **(16, 17 | 18)** as the test set (before '|', the features of test set; after '|', the labels of the test set), we need to choose another four group.
+1. As customary, we set the ratio between the training set and the test set to be 4:1. So since we have choose **(16, 17 → 18)** as the test set (before '→', the features of test set; after '→', the labels of the test set), we need to choose another four groups.
 2. If we count back from 18th, the abnormal comsumption in 12th, December will distrurb our model greatly, so we need to skip that when choose the train set.
 
-The overall process is shon below, and related data that has been processed is in our [Data](https://github.com/Parametric3/PHBS_MLF_2019/tree/master/Data) folder.
+The overall process is shown below, and related data that has been processed is in our [Data](https://github.com/Parametric3/PHBS_MLF_2019/tree/master/Data) folder.
 ![OveralL Process](https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/OveralL_Process.png)
 ## Feature Generating
 All the features can be dicided into two levels:
-1. Basic features, which usually involves one indicator in the original file;
-2. Interactive features, which involves two or moe original indicators.
+1. Basic features, which usually involve one indicator in the original file;
+2. Interactive features, which involve two or more original indicators.
 
-And for each feature class, like user features, the features it contains can be divided into three tyoes:
+And for each feature class, like user features, the features it contains can be divided into three types:
 1. Satistic features: Obtained by directly counting the number of certain event.
 2. Ratio features: Ratio between two satistic features.
 3. Time features: Features that involve time.
 ### Basic Features
-1. User features (Feature type = 1):
+1. **User features** (Feature type = 1):
 
 Feature name| type | Explaination
 ---|---|---
-1_user_activity|statictic|number of user actions in the two days
-1_number_of_items_related|statictic|number of items that the user had interactions with in the two days
-1_number_of_browsing_actions|statictic|number of browsing actions in the two days
-1_number_of_collecting_actions|statictic|number of collecting actions in the two days
-1_number_of_carting_actions|statictic|number of adding into the cart actions in the two days
-1_number_of_buying_actions|statictic|number of purchasing actions in the two days
-1_behavior_pattern|statictic|1 as dirctly buying, 0 as collecting or adding into cart before buying and -1 as not buying
+1_user_activity|statistic|number of user actions in the two days
+1_number_of_items_related|statistic|number of items that the user had interactions with in the two days
+1_number_of_browsing_actions|statistic|number of browsing actions in the two days
+1_number_of_collecting_actions|statistic|number of collecting actions in the two days
+1_number_of_carting_actions|statistic|number of adding into the cart actions in the two days
+1_number_of_buying_actions|statistic|number of purchasing actions in the two days
+1_behavior_pattern|statistic|1 as dirctly buying, 0 as collecting or adding into cart before buying and -1 as not buying
 1_ratio_of_browsing_actions|ratio|ratio between number of browsing actions and number of all actions
 1_ratio_of_collecting_actions|ratio|ratio between number of collecting actions and number of all actions
 1_ratio_of_carting_actions|ratio|ratio between number of adding into cart actions and number of all actions
@@ -87,20 +87,128 @@ Feature name| type | Explaination
 1_time_lag|time|the time lag between first online and last time online
 1_the_behavior_frequency|time|time lag over the total number of activities
 
-2. Item features (Feature type = 1):
-3. Category features (Feature type = 3):
+2. **Item features** (Feature type = 2):
 
 Feature name| type | Explaination
 ---|---|---
-3_number_of_categories_related|statictic|number of categories that user had interaction with
+2_item_buy|statistic|The number of times the product was purchased in the two days
+2_item_view|statistic|The number of times the product was viewed in the two days
+2_item_collect|statistic|The number of times the product was collected in the two days
+2_item_add|statistic|The number of times the product was carted in the two days
+2_item_buypeople|statistic|The number of users who purchased the product (the number of people who have been deduplicated in the two days)
+2_item_viewpeople|statistic|The number of users who viewed the product (the number of people who have been deduplicated in the two days)
+2_item_collectpeople|statistic|The number of users who collected the product (the number of people who have been deduplicated in the two days)
+2_item_frequentbuypeople|statistic|Number of users who make multiple purchases in two days
+2_item_frequentviewpeople|statistic| Number of users who viewed the product multiple times in the two days
+2_item_frequentcollectpeople|statistic|Number of users who make multiple purchases in two days
+
+ 
+ 
+
+
+
+
+周期内多次收藏的用户数 
+加购物车量 2_item_add
+加购物车量人数（周期内经过去重的人数） 2_item_addpeople
+周期内多次加购物车量的用户数 2_item_frequentaddpeople
+购买量/浏览量 2_item_buy_view
+购买人数/浏览人数   2_item_buypeople_viewpeople
+购买量/收藏量  2_item_buy_collect
+购买人数/收藏人数  2_item_buypeople_collectpeople
+购买量/加购物车量  2_item_buy_add
+购买人数/加购物车人数  2_item_buypeople_addpeople
+返客率（周期内多次购买的用户数/购买人数）2_item_frequentbuypeople_buypeople
+返访率 （周期内多次访问的用户数/访问人数）
+2_item_frequentviewpeople_viewpeople
+返藏率 （周期内多次收藏的用户数/收藏人数）
+2_item_frequentcollectpeople_collectpeople
+返车率 （周期内多次加购物车的用户数/ 加购物车人数）
+2_item_frequentaddpeople_addpeople
+
+3. **Category features** (Feature type = 3):
+
+Feature name| type | Explaination
+---|---|---
+3_number_of_categories_related|statistic|number of categories that user had interaction with
 3_category_concentration_rate|ratio|number of items related over number of categories related
 
-4. Geo features (Feature type = 4):
+4. **Geo features** (Feature type = 4):
+Feature name| type | Explaination
+---|---|---
 
 ### Interactive Features
 
-## Model Building
 
-## Metrics
+## Data preprocessing
+### Dealing with missing data
+We eliminate samples with missing values.
+### Standardization
+In order to eliminate the model result error caused by the size of the data itself, we standardize the data.
+### Imbalanced Sample: Up&downsampling</p>
+Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
+
+## Model Building
+### 1. Lasso Logistic Regression</p>
+Use L1 regularization to achieve variable selection</p>
+When C=0.01, there're 25 features selected, including 'number of buying actions', 'ratio of purchases to collects', which quite make sense. We get the training accuracy: 0.914 and test accuracy: 0.481. There's obvious overfitting problem and the accuracy is below 0.5.Therefore, we don't adopt this model.</p>
+
+### 2. PCA + Logistic Regression
+Choose 2 principle components can explain more than 90% of the variance in the model, then do Logistic Regression. We get the training accuracy: 0.901 and test accuracy: 0.995. We wonder why 1&2 both use logistic regression but get totally different results. Also, PCA reflects that the variables have multicollinearity problem.</p>
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="650"/>
+</div>
+
+### 3. SVM</p>
+We get the training accuracy: 0.945 and test accuracy: 0.995.
+
+### 4. Random Forest--bagging</p>
+We get the training accuracy: 0.966 and test accuracy: 0.972. Important features include 'item_buy_add' and 'item_viewpeople'.</p>
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/FI.png" height="400" width="650"/>
+</div>
+
+Through 5-folds cross-validation, we get F1- score 80.53%, which is quite nice. As the ROC curve shows, AUC is 0.91.
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="650"/>
+</div>
+
+### 5. GBRT (Gradient Boost Regression Tree)--boosting</p>
+We get the training accuracy: 0.925 and test accuracy: 0.989. AUC is 0.65.
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="650"/>
+</div>
+
+### Conclusion
+SVM and Random Forest are suitable method for our data.
 
 ## Future Work
+1. Introduce interaction terms;</p>
+2. Try combination of models;</p>
+### Example (Source: Tianchi Bigdata)
+### RF+GBRT</p>
+**Combination1**</p>
+a. Use RF to train, output is y_rf;</p>
+b. Use GBRT to train under y-y_rf;</p>
+c. Use the average of a&b when predict.</p>
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/RF+GBRT1.png" height="300" width="850"/>
+</div>
+
+**Combination2**</p>
+a. Use RF to get random features;</p>
+b. Use GBRT for those features;</p>
+c. Use the average of multiple GBRT outputs when predict.</p>
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/RF+GBRT2.png" height="300" width="600"/>
+</div>
+
+### GBRT+LR</p>
+Stucture/depth/learning rate/iteration are adjusted accordingly</p>
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/LR+GBRT.png" height="330" width="750"/>
+</div>
+
+3. Optimize the parameters in the model using gradient search;</p>

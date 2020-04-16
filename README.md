@@ -35,7 +35,7 @@ For detailed data, see our [data](https://disk.pku.edu.cn:443/link/2B3214E551997
 **'Prucahse'** correspodning to **'1'**, and **'Not Purchase'** corresponding to **'0'**</p>
 Particularity of the problem:
 1. The label is not just for one user or one item, but for one user-item pair **(user, item)**, which influence the selection of training set and test set
-2. This is cross-sectional problem. For example, for one user-item pair, its label is derived from the bahevior of 18th, while its features are derived from days before 18th. That is because we can only the past to predict the future.
+2. This is multi-period problem. For example, for one user-item pair, its label is derived from the bahevior of 18th, while its features are derived from days before 18th. That is because we can only the past to predict the future.
 ### Days that really matter
 Since we will use the information before 18th to predict the user behavior in 18th, the next question is how many days should be considered. Intuitively, the behavior one month ago definetely has nothing to do with whether the user will buy or not. So this actually a hyperparameter that we should decide first, and then find its best value through fine-tuning. Using $\Delta$ to denote it, and we let $\Delta$ = 2 at first.</p>
 ### Test Set

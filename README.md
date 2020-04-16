@@ -122,6 +122,7 @@ Feature name| type | Explaination
 3_category_concentration_rate|ratio|number of items related over number of categories related
 
 4. **Geo features** (Feature type = 4):
+
 Feature name| type | Explaination
 ---|---|---
 4_geo_purchasepower|ratio| ratio of total number of products purchased in the area to total number of users in the area

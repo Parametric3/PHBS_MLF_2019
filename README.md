@@ -126,14 +126,15 @@ Feature name| type | Explaination
 2_item_frequentcollectpeople_collectpeople
 返车率 （周期内多次加购物车的用户数/ 加购物车人数）
 2_item_frequentaddpeople_addpeople
-3. Category features (Feature type = 3):
+
+3. Category features (Feature type = 1):
 
 Feature name| type | Explaination
 ---|---|---
 3_number_of_categories_related|statistic|number of categories that user had interaction with
 3_category_concentration_rate|ratio|number of items related over number of categories related
 
-4. Geo features (Feature type = 4):
+4. Geo features (Feature type = 1):
 Feature name| type | Explaination
 ---|---|---
 

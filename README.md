@@ -152,15 +152,24 @@ Through statistics, we have a total of 279,525 samples, while the number of samp
 ## Model Building
 ### 1. Lasso Logistic Regression</p>
 Use L1 regularization to achieve variable selection</p>
-When C=0.001, there're 17 features selected, including 'number of buying actions', 'ratio of purchases to collects', which quite make sense. We get the training accuracy: 0.914 and test accuracy: 0.481</p>
+When C=0.001, there're 17 features selected, including 'number of buying actions', 'ratio of purchases to collects', which quite make sense. We get the training accuracy: 0.914 and test accuracy: 0.481. There's obvious overfitting problem and the accuracy is below 0.5.Therefore, we don't adopt this model.</p>
+
 ### 2. PCA + Logistic Regression
-Choose n principle components can explain more than 90% of the variance in the model, then do Logistic Regression</p>
-pca gragh</p>
+Choose 2 principle components can explain more than 90% of the variance in the model, then do Logistic Regression. We get the training accuracy: 0.901 and test accuracy: 0.995. We wonder why 1&w both use logistic regression but get totally different results. Also, PCA reflects that the variables have multicollinearity problem.</p>
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="330" width="850"/>
+</div>
+
 ### 3. SVM</p>
+We get the training accuracy: 0.945 and test accuracy: 0.995.
 
 ### 4. Random Forest--bagging</p>
-show important features</p>
+We get the training accuracy: 0.966 and test accuracy: 0.972. Important features include 'item_buy_add' and 'item_viewpeople'.</p>
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="330" width="850"/>
+</div>
 
+Through 5-folds cross-validation, we get F1- score 80.53%, which is quite nice.
 ### 5. GBRT (Gradient Boost Regression Tree)--boosting</p>
 
 ### 6. RF+GBRT</p>

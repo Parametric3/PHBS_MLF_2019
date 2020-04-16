@@ -140,11 +140,16 @@ Feature name| type | Explaination
 
 ### Interactive Features
 
-## Model Building
+
+## Data preprocessing
+### Dealing with missing data
+We eliminate samples with missing values.
 ### Standardization
 In order to eliminate the model result error caused by the size of the data itself, we standardize the data.
 ### Imbalanced Sample: Up&downsampling</p>
 Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
+
+## Model Building
 ### 1. Lasso Logistic Regression</p>
 Use L1 regularization to achieve variable selection</p>
 When C=0.001, there're 17 features selected, including 'number of buying actions', 'ratio of purchases to collects', which quite make sense. We get the training accuracy: 0.914 and test accuracy: 0.481</p>

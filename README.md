@@ -51,17 +51,17 @@ Three ways to choose test set:</p>
 
 ### Train Set
 The basic rules all the same for train set. Two things to consider:</p>
-1. As customary, we set the ratio between the training set and the test set to be 4:1. So since we have choose **(16, 17 | 18)** as the test set (before '|', the features of test set; after '|', the labels of the test set), we need to choose another four group.
+1. As customary, we set the ratio between the training set and the test set to be 4:1. So since we have choose **(16, 17 → 18)** as the test set (before '→', the features of test set; after '→', the labels of the test set), we need to choose another four groups.
 2. If we count back from 18th, the abnormal comsumption in 12th, December will distrurb our model greatly, so we need to skip that when choose the train set.
 
-The overall process is shon below, and related data that has been processed is in our [Data](https://github.com/Parametric3/PHBS_MLF_2019/tree/master/Data) folder.
+The overall process is shown below, and related data that has been processed is in our [Data](https://github.com/Parametric3/PHBS_MLF_2019/tree/master/Data) folder.
 ![OveralL Process](https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/OveralL_Process.png)
 ## Feature Generating
 All the features can be dicided into two levels:
-1. Basic features, which usually involves one indicator in the original file;
-2. Interactive features, which involves two or moe original indicators.
+1. Basic features, which usually involve one indicator in the original file;
+2. Interactive features, which involve two or more original indicators.
 
-And for each feature class, like user features, the features it contains can be divided into three tyoes:
+And for each feature class, like user features, the features it contains can be divided into three types:
 1. Satistic features: Obtained by directly counting the number of certain event.
 2. Ratio features: Ratio between two satistic features.
 3. Time features: Features that involve time.

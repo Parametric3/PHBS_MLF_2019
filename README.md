@@ -124,6 +124,10 @@ Feature name| type | Explaination
 4. **Geo features** (Feature type = 4):
 Feature name| type | Explaination
 ---|---|---
+4_geo_purchasepower|ratio| ratio of total number of products purchased in the area to total number of users in the area
+4_geo_buyview|ratio|ratio of total number of products purchased in the area to total number of products viewed in the area
+4_geo_buycollect|ratio|ratio of total number of products purchased in the area to total number of products collected in the area
+4_geo_buyadd|ratio|ratio of total number of products purchased in the area to total number of products carted in the area
 
 ### Interactive Features
 

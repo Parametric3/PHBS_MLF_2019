@@ -166,7 +166,7 @@ We get the training accuracy: 0.945 and test accuracy: 0.995.
 ### 4. Random Forest--bagging</p>
 We get the training accuracy: 0.966 and test accuracy: 0.972. Important features include 'item_buy_add' and 'item_viewpeople'.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="330" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/FI.png" height="330" width="650"/>
 </div>
 
 Through 5-folds cross-validation, we get F1- score 80.53%, which is quite nice. As the ROC curve shows, AUC is 0.91.
@@ -179,7 +179,7 @@ Through 5-folds cross-validation, we get F1- score 80.53%, which is quite nice. 
 We get the training accuracy: 0.925 and test accuracy: 0.989. AUC is 0.65.
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="330" width="850"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="330" width="650"/>
 </div>
 
 ### Conclusion
@@ -203,13 +203,13 @@ a. Use RF to get random features;</p>
 b. Use GBRT for those features;</p>
 c. Use the average of multiple GBRT outputs when predict.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/RF+GBRT2.png" height="330" width="450"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/RF+GBRT2.png" height="330" width="550"/>
 </div>
 
 ### GBRT+LR</p>
 Stucture/depth/learning rate/iteration are adjusted accordingly</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/LR+GBRT.png" height="330" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/LR+GBRT.png" height="330" width="750"/>
 </div>
 
 3. Optimize the parameters in the model using gradient search;</p>

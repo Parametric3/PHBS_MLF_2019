@@ -155,7 +155,7 @@ Use L1 regularization to achieve variable selection</p>
 When C=0.01, there're 25 features selected, including 'number of buying actions', 'ratio of purchases to collects', which quite make sense. We get the training accuracy: 0.914 and test accuracy: 0.481. There's obvious overfitting problem and the accuracy is below 0.5.Therefore, we don't adopt this model.</p>
 
 ### 2. PCA + Logistic Regression
-Choose 2 principle components can explain more than 90% of the variance in the model, then do Logistic Regression. We get the training accuracy: 0.901 and test accuracy: 0.995. We wonder why 1&w both use logistic regression but get totally different results. Also, PCA reflects that the variables have multicollinearity problem.</p>
+Choose 2 principle components can explain more than 90% of the variance in the model, then do Logistic Regression. We get the training accuracy: 0.901 and test accuracy: 0.995. We wonder why 1&2 both use logistic regression but get totally different results. Also, PCA reflects that the variables have multicollinearity problem.</p>
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="650"/>
 </div>

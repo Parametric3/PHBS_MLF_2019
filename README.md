@@ -37,7 +37,7 @@ Particularity of the problem:
 1. The label is not just for one user or one item, but for one user-item pair **(user, item)**, which influence the selection of training set and test set
 2. This is multi-period problem. For example, for one user-item pair, its label is derived from the bahevior of 18th, while its features are derived from days before 18th. That is because we can only the past to predict the future.
 ### Days that really matter
-Since we will use the information before 18th to predict the user behavior in 18th, the next question is how many days should be considered. Intuitively, the behavior one month ago definetely has nothing to do with whether the user will buy or not. So this actually a hyperparameter that we should decide first, and then find its best value through fine-tuning. Using $\Delta$ to denote it, and we let $\Delta$ = 2 at first.</p>
+Since we will use the information before 18th to predict the user behavior in 18th, the next question is how many days should be considered. Intuitively, the behavior one month ago definetely has nothing to do with whether the user will buy or not. So this actually a hyperparameter that we should decide first, and then find its best value through fine-tuning. Using $\Delta$ to denote it, and we let $\Delta$ = 2 at first. Later, we will also implement the same preprocessing and model on the datasets with $\Delta$ = 3 and 4 respectively.</p>
 ### Test Set
 Three ways to choose test set:</p>
 1. ~~All users and all items:~~
@@ -129,6 +129,17 @@ Feature name| type | Explaination
 4_geo_buyview|ratio|ratio of total number of products purchased in the area to total number of products viewed in the area
 4_geo_buycollect|ratio|ratio of total number of products purchased in the area to total number of products collected in the area
 4_geo_buyadd|ratio|ratio of total number of products purchased in the area to total number of products carted in the area
+
+5. **UC(User and Category) features** (Feature type = 5):
+
+Feature name| type | Explaination
+---|---|---
+5_Number_of_items|statistic| Numbers of items the user had interactions with in that category
+5_Repurchasing_pattern|statistic| 1 if the user had repurchasing behavior
+5_Number_of_purchasing|statistic| Number of purchasing behaviors in that category
+5_Category_prefernce|ratio|Numbers of items the user had interactions with in that category divided by number of all items the user had interactions with
+5_Category_purchase_power|ratio|Number of purchasing behaviors in that category divided by numbers of items the user had interactions with in that category
+5_Overnight_purchase_pattern|ratio|whether the user purchase the item one day after browsing, collecting or adding into cart
 
 Note: some ratio-based indicators in this article have missing indicator data because the denominator is 0. For such indicators, the missing value is filled with 0.
 

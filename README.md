@@ -35,7 +35,7 @@ For detailed data, see our [data](https://disk.pku.edu.cn:443/link/2B3214E551997
 **'Prucahse'** correspodning to **'1'**, and **'Not Purchase'** corresponding to **'0'**</p>
 Particularity of the problem:
 1. The label is not just for one user or one item, but for one user-item pair **(user, item)**, which influence the selection of training set and test set
-2. This is cross-sectional problem. For example, for one user-item pair, its label is derived from the bahevior of 18th, while its features are derived from days before 18th. That is because we can only the past to predict the future.
+2. This is multi-period problem. For example, for one user-item pair, its label is derived from the bahevior of 18th, while its features are derived from days before 18th. That is because we can only the past to predict the future.
 ### Days that really matter
 Since we will use the information before 18th to predict the user behavior in 18th, the next question is how many days should be considered. Intuitively, the behavior one month ago definetely has nothing to do with whether the user will buy or not. So this actually a hyperparameter that we should decide first, and then find its best value through fine-tuning. Using $\Delta$ to denote it, and we let $\Delta$ = 2 at first.</p>
 ### Test Set
@@ -91,40 +91,28 @@ Feature name| type | Explaination
 
 Feature name| type | Explaination
 ---|---|---
-2_item_buy|statistic|The number of times the product was purchased in the two days
-2_item_view|statistic|The number of times the product was viewed in the two days
-2_item_collect|statistic|The number of times the product was collected in the two days
-2_item_add|statistic|The number of times the product was carted in the two days
-2_item_buypeople|statistic|The number of users who purchased the product (the number of people who have been deduplicated in the two days)
-2_item_viewpeople|statistic|The number of users who viewed the product (the number of people who have been deduplicated in the two days)
-2_item_collectpeople|statistic|The number of users who collected the product (the number of people who have been deduplicated in the two days)
-2_item_frequentbuypeople|statistic|Number of users who make multiple purchases in two days
-2_item_frequentviewpeople|statistic| Number of users who viewed the product multiple times in the two days
-2_item_frequentcollectpeople|statistic|Number of users who make multiple purchases in two days
-
- 
- 
-
-
-
-
-周期内多次收藏的用户数 
-加购物车量 2_item_add
-加购物车量人数（周期内经过去重的人数） 2_item_addpeople
-周期内多次加购物车量的用户数 2_item_frequentaddpeople
-购买量/浏览量 2_item_buy_view
-购买人数/浏览人数   2_item_buypeople_viewpeople
-购买量/收藏量  2_item_buy_collect
-购买人数/收藏人数  2_item_buypeople_collectpeople
-购买量/加购物车量  2_item_buy_add
-购买人数/加购物车人数  2_item_buypeople_addpeople
-返客率（周期内多次购买的用户数/购买人数）2_item_frequentbuypeople_buypeople
-返访率 （周期内多次访问的用户数/访问人数）
-2_item_frequentviewpeople_viewpeople
-返藏率 （周期内多次收藏的用户数/收藏人数）
-2_item_frequentcollectpeople_collectpeople
-返车率 （周期内多次加购物车的用户数/ 加购物车人数）
-2_item_frequentaddpeople_addpeople
+2_item_buy|statistic| number of times the product was purchased in the two days
+2_item_view|statistic| number of times the product was viewed in the two days
+2_item_collect|statistic| number of times the product was collected in the two days
+2_item_add|statistic| number of times the product was carted in the two days
+2_item_buypeople|statistic| number of users who purchased the product in the two days(the number of people who have been deduplicated)
+2_item_viewpeople|statistic| number of users who viewed the product in the two days(the number of people who have been deduplicated)
+2_item_collectpeople|statistic| number of users who collected the product in the two days(the number of people who have been deduplicated)
+2_item_addpeople|statistic| number of users who carted the product in the two days(the number of people who have been deduplicated)
+2_item_frequentbuypeople|statistic|number of users who make multiple purchases in the two days
+2_item_frequentviewpeople|statistic|number of users who viewed the product multiple times in the two days
+2_item_frequentcollectpeople|statistic|number of users who collected the product multiple times in the two days
+2_item_frequentaddpeople|statistic|number of users who carted the product multiple times in the two days
+2_item_buy_view|ratio|ratio of number of times the product was purchased in the two days to number of times the product was viewed in the two days
+2_item_buy_collect|ratio|ratio of number of times the product was purchased in the two days to number of times the product was collected in the two days
+2_item_buy_add|ratio|ratio of number of times the product was purchased in the two days to number of times the product was carted in the two days
+2_item_buypeople_viewpeople|ratio|ratio of number of users who purchased the product in the two days to number of users who viewed the product in the two days (the number of people who have been deduplicated)
+2_item_buypeople_collectpeople|ratio|ratio of number of users who purchased the product in the two days to number of users who collected the product in the two days (the number of people who have been deduplicated)
+2_item_buypeople_addpeople|ratio|ratio of number of users who purchased the product in the two days to number of users who carted the product in the two days (the number of people who have been deduplicated)
+2_item_frequentbuypeople_buypeople|ratio|ratio of number of users who make multiple purchases in the two days to number of users who purchased the product in the two days (the number of people who have been deduplicated)
+2_item_frequentviewpeople_viewpeople|ratio|ratio of number of users who viewed the product multiple times in the two days to number of users who viewed the product in the two days (the number of people who have been deduplicated)
+2_item_frequentcollectpeople_collectpeople|ratio|ratio of number of users who collected the product multiple times in the two days to number of users who collected the product in the two days (the number of people who have been deduplicated)
+2_item_frequentaddpeople_addpeople|ratio|ratio of number of users who carted the product multiple times in the two days to number of users who carted the product in the two days (the number of people who have been deduplicated)
 
 3. **Category features** (Feature type = 3):
 
@@ -134,8 +122,15 @@ Feature name| type | Explaination
 3_category_concentration_rate|ratio|number of items related over number of categories related
 
 4. **Geo features** (Feature type = 4):
+
 Feature name| type | Explaination
 ---|---|---
+4_geo_purchasepower|ratio| ratio of total number of products purchased in the area to total number of users in the area
+4_geo_buyview|ratio|ratio of total number of products purchased in the area to total number of products viewed in the area
+4_geo_buycollect|ratio|ratio of total number of products purchased in the area to total number of products collected in the area
+4_geo_buyadd|ratio|ratio of total number of products purchased in the area to total number of products carted in the area
+
+Note: some ratio-based indicators in this article have missing indicator data because the denominator is 0. For such indicators, the missing value is filled with 0.
 
 ### Interactive Features
 

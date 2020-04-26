@@ -185,7 +185,7 @@ Features selected|Coefficient|Explanation
 We use above five features for modeling and the results are as follows:</p>
 
 Value|2-days|3-days|4-days
-:---:|:---:|:---:
+:---:|:---:|:---:|:---:
 Parameter C|0.0000065|0.0000085|
 Training accruacy|0.901|0.922|0.925
 Test accruacy|0.617|0.591|0.643

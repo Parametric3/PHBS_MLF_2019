@@ -173,7 +173,6 @@ Since we would like to compare the results of using the first 2/3/4 days' data t
 ### Part 1: Beneficial Attempts
 ### 1. Lasso + Logistic Regression</p>
 We use L1 regularization to achieve variable selection. In order to reduce dimension, we gradually adjust the value of parameter "C" and there're finally 5 features selected, including:</p>
-
 Features selected|Coefficient|Explanation
 :---:|:---:|:---:
 1_user activity|3.459e-04|The more active is the user, the more possible for him to buy.
@@ -182,30 +181,29 @@ Features selected|Coefficient|Explanation
 2_item_view|-4.624e-04| The fewer relating items the user view, the more possible for him to buy this particular item.
 4_geo_view|-9.380e-06| Contradict to our common sense-- larger the ratio of purchased product number to viewed product number in the area, the more possible to buy. However, as we can see in our model the coefficient is relatively small compared with other features.
 
-Note: Above results are based on the first 2 days' data. Using the first 3/4 days' data, we get excactly same features, and similiar coefficients.
+(Note: Above results are based on the first 2 days' data. Using the first 3/4 days' data, we get excactly same features, and similiar coefficients.)
 
 We use above five features for modeling and the results are as follows:</p>
 
 Value|2-days|3-days|4-days
-:---:|:---:|:---:
-Parameter C|0.0000065|0.0000085
+:---:|:---:|:---:|:---:
+Parameter C|0.0000065|0.0000085|
 Training accruacy|0.901|0.922|0.925
 Test accruacy|0.617|0.591|0.643
 
-The results are not satisfying for that:
+The results are not satisfying:
 a. We expect the "Interactive Features" to conduct a relatively large effect on purchase behavior, because they reflect the specific relation between the user and items. However, none of them is chosen in the model.</p>
 b. The testing accuracy is too low, so do F1-score&Precision&Recall under 5-folds cross-validation.
 
 ### 2. PCA + Logistic Regression
 After principle components analysis, we find the first principle component can explain nearly all of the variance in the model (99.95% in 2-days data). PCA reflects that our data have serious multicollinearity problem. Here's the structure of the first component in 2-days data.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="800"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="650"/>
 </div>
 As we can see, except for "4_geo_view", which make up 99.15% in the first component, other features only make up a very small poportion.
 Afterwards, we apply Logistic Regression to the first component and get following results.</p>
-
 Value|2-days|3-days|4-days
-:---:|:---:|:---:
+:---:|:---:|:---:|:---:
 Training accruacy|0.901|0.922|0.925
 Test accruacy|0.995|0.591|0.643
 
@@ -218,33 +216,31 @@ Logestic Regression is not suitable for our data structure. We consider a large 
 ### 1. Random Forest
 As a bagging method, Random forest can efficiently help us alleviate overfitting problem, and sort out some important features, eg.'5_Number_of_purchasing', '5_Category_prefernce', '5_Category_purchase_power', '5_Overnight_purchase_pattern'.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="400" width="800"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="400" width="650"/>
 </div>
 Through 5-folds cross-validation, we get the ROC curve (based on 2-days data).
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="800"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="650"/>
 </div>
 Value|2-days|3-days|4-days
-:---:|:---:|:---:
+:---:|:---:|:---:|:---:
 Training accruacy|0.9878|0.922|0.925
 Test accruacy|0.9874|0.591|0.643
-F1 Score|92.98%|0.922|0.925
-precision|89.60%|0.922|0.925
-recall|96.62%|0.922|0.925
+F1 Score|92.98%| |
+precision|89.60%| |
+recall|96.62%| |
 
 ### 2. GBRT (Gradient Boost Regression Tree)--boosting
-GBRT adopts the idea of boosting, here are the results:</p>
-
+GBRT adopts the idea of boosting, here are the results.</p>
 Value|2-days|3-days|4-days
-:---:|:---:|:---:
+:---:|:---:|:---:|:---:
 Training accruacy|0.9625|0.922|0.925
 Test accruacy|0.9821|0.591|0.643
-F1 Score|80.11%|0.922|0.925
-precision|83.53%|0.922|0.925
-recall|76.96%|0.922|0.925
-
+F1 Score|80.11%|
+precision|83.53%|
+recall|76.96%|
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="800"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="650"/>
 </div>
 We can see that the performance of GBRT is not as good as RF.
 

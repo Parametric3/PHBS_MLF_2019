@@ -166,43 +166,50 @@ We eliminate samples with missing values.
 In order to eliminate the model result error caused by the size of the data itself, we standardize the data.
 ### Imbalanced Sample: Up&downsampling</p>
 Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
+We need to pay attention that after we 
 
 ## Model Building
-Since we would like to compare the results of using the first two days' data to predict the third day's purchase behavior and the first three days', we use two series of data in each model below.
+Since we would like to compare the results of using the first 2/3/4 days' data to predict the next day's purchase behavior, we use three series of data in each model below.
 ### Part 1: Beneficial Attempts
 ### 1. Lasso + Logistic Regression</p>
 We use L1 regularization to achieve variable selection. In order to reduce dimension, we gradually adjust the value of parameter "C" and there're finally 5 features selected, including:</p>
 Features selected|Coefficient|Explanation
 :---:|:---:|:---:
-1_user activity|3.45932291e-04|The more active is the user, the more possible for him to buy.
+1_user activity|3.459e-04|The more active is the user, the more possible for him to buy.
 1_number of items related|-2.85615479e-03|The fewer relating items the user interacts with, the more possible for him to buy this particular item.
-1_time lag|-2.19922185e-02| Shorter the time lag between first and last time online, the more possible to buy， probably because the so called ‘consumption impulse’. When the user spends more time viewing the items, he may become more rational and find there’s no need to buy. 
-2_item_view|-4.62399887e-04| The fewer relating items the user view, the more possible for him to buy this particular item.
-4_geo_view|-9.37961849e-06| Contradict to our common sense-- larger the ratio of purchased product number to viewed product number in the area, the more possible to buy. However, as we can see in our model the coefficient is relatively small compared with other features.
+1_time lag|-2.199e-02| Shorter the time lag between first and last time online, the more possible to buy， probably because the so called ‘consumption impulse’. When the user spends more time viewing the items, he may become more rational and find there’s no need to buy. 
+2_item_view|-4.624e-04| The fewer relating items the user view, the more possible for him to buy this particular item.
+4_geo_view|-9.380e-06| Contradict to our common sense-- larger the ratio of purchased product number to viewed product number in the area, the more possible to buy. However, as we can see in our model the coefficient is relatively small compared with other features.
+(Note: Above results are based on the first 2 days' data. Using the first 3/4 days' data, we get excactly same features, and similiar coefficients.)
 
 We use above five features for modeling and the results are as follows:</p>
 
-Evaluation|2-days|3-days
+Value|2-days|3-days|4-days
 :---:|:---:|:---:
-Parameter C|0.0000065|0.0000085
-Training accruacy|0.901|0.922
-Testing accruacy|0.617|0.591
-precision|0.00%|0.00%
-recall|0.00%|0.00%
-F1_score|0.00%|0.00%
+Parameter C|0.0000065|0.0000085|
+Training accruacy|0.901|0.922|0.925
+Test accruacy|0.617|0.591|0.643
 
-This result doesn't really make sense. Based on our previous explanation about the 6 categories of features, the "Interactive Features" which reflect the specific relation between the user and items, may conduct largest effect on the following consumption behavior. However, none of the "Interactive Features" are included in the 5 features selected. </p>
-As a result, we try to use PCA to identify patterns in data based on the correlation between features.</p>
+The results are not satisfying:
+a. We expect the "Interactive Features" to conduct a relatively large effect on purchase behavior, because they reflect the specific relation between the user and items. However, none of them is chosen in the model.</p>
+b. The testing accuracy is too low, so do F1-score&Precision&Recall under 5-folds cross-validation.
 
 ### 2. PCA + Logistic Regression
-Choose 2 principle components can explain more than 90% of the variance in the model, then do Logistic Regression. We get the training accuracy: 0.901 and test accuracy: 0.995. We wonder why 1&2 both use logistic regression but get totally different results. Also, PCA reflects that the variables have multicollinearity problem.</p>
+After principle components analysis, we find the first principle component can explain nearly all of the variance in the model (99.95% in 2-days data). PCA reflects that our data have serious multicollinearity problem. Here's the structure of the first component in 2-days data.</p>
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="650"/>
 </div>
+As we can see, except for "4_geo_view", which make up 99.15% in the first component, other features only make up a very small poportion.
+Afterwards, we apply Logistic Regression to the first component and get following results.
+Value|2-days|3-days|4-days
+:---:|:---:|:---:
+Training accruacy|0.901|0.922|0.925
+Test accruacy|0.995|0.591|0.643
 
-Possible explanations for the unideal results:</p>
-a. Logistic regression is essentially a linear model. We add a large number of features(including dummy variables) to improve the accuracy. However, the data structure is so complex that it may not adapt to a simple linear model. Besides, reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset, which is consistent with our results.</p>
-b. As for the higer testing accurary than training accruraty, we think the **up & down sampling** method for only the training set instead of for both the training and testing set may be a reason. Besides, we think the accuracy ratio is not that important due to the extremely imbalanced samples (much more “Not Purchase” than “Purchase” samples) . As a matter of fact, the tianchi competition only focus on the F1 score.</p>
+We get test accruacy much higher than training, which does not make sense. Checking the confusion matrix, we find the True Positive Rate is really low, that is to say this method tends to classify all the observations into Negative, thus resulting the high test accruacy since the buying behavior is so rare.
+
+The above two method may not have a good performance considering prediction, however, we get a better understanding of our data through them. Possible explanations for the so far unsatisfactory results:</p>
+Logestic Regression is not suitable for our data structure. We consider a large number of features , including large amount of dummy variables, the data structure may be complex, but Logestic Regression is basically a linear model. Besides, reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset, which is consistent with our results.</p>
 
 ### 3. SVM</p>
 We get the training accuracy: 0.945 and test accuracy: 0.995.

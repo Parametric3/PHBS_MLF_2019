@@ -99,10 +99,6 @@ Feature name| type | Explaination
 2_item_viewpeople|statistic| number of users who viewed the product in the two days(the number of people who have been deduplicated)
 2_item_collectpeople|statistic| number of users who collected the product in the two days(the number of people who have been deduplicated)
 2_item_addpeople|statistic| number of users who carted the product in the two days(the number of people who have been deduplicated)
-2_item_frequentbuypeople|statistic|number of users who make multiple purchases in the two days
-2_item_frequentviewpeople|statistic|number of users who viewed the product multiple times in the two days
-2_item_frequentcollectpeople|statistic|number of users who collected the product multiple times in the two days
-2_item_frequentaddpeople|statistic|number of users who carted the product multiple times in the two days
 2_item_buy_view|ratio|ratio of number of times the product was purchased in the two days to number of times the product was viewed in the two days
 2_item_buy_collect|ratio|ratio of number of times the product was purchased in the two days to number of times the product was collected in the two days
 2_item_buy_add|ratio|ratio of number of times the product was purchased in the two days to number of times the product was carted in the two days
@@ -125,10 +121,14 @@ Feature name| type | Explaination
 
 Feature name| type | Explaination
 ---|---|---
+4_geo_view|statistics| the number of total items viewed in the area
+4_geo_collect|statistics|the number of total items collected in the area
+4_geo_add|statistics|the number of total items carted in the area
+4_geo_buy|statistics|the number of total items purchased in the area
 4_geo_purchasepower|ratio| ratio of total number of products purchased in the area to total number of users in the area
-4_geo_buyview|ratio|ratio of total number of products purchased in the area to total number of products viewed in the area
-4_geo_buycollect|ratio|ratio of total number of products purchased in the area to total number of products collected in the area
-4_geo_buyadd|ratio|ratio of total number of products purchased in the area to total number of products carted in the area
+4_geo_buy_view|ratio|ratio of total number of products purchased in the area to total number of products viewed in the area
+4_geo_buy_collect|ratio|ratio of total number of products purchased in the area to total number of products collected in the area
+4_geo_buy_add|ratio|ratio of total number of products purchased in the area to total number of products carted in the area
 
 5. **UC(User and Category) features** (Feature type = 5):
 

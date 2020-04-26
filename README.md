@@ -157,7 +157,13 @@ Through statistics, we have a total of 279,525 samples, while the number of samp
 ## Model Building
 ### 1. Lasso Logistic Regression</p>
 Use L1 regularization to achieve variable selection</p>
-When C=0.01, there're 25 features selected, including 'number of buying actions', 'ratio of purchases to collects', which quite make sense. We get the training accuracy: 0.914 and test accuracy: 0.481. There's obvious overfitting problem and the accuracy is below 0.5.Therefore, we don't adopt this model.</p>
+When C=0.0000085, there're 5 features selected, including '1_user activity', '1_number of items related','1_first time online','2_item_view','4_geo_view',which doesn't really make sense.Therefore, we don't adopt this model.</p>
+
+Evaluation|2-days|3-days|4-days
+:---:|:---:|:---:|:---:
+Training accruacy|0.901|0.922|
+Testing accruacy|0.589|0.591|
+F1_score|0.00%|0.00%|
 
 ### 2. PCA + Logistic Regression
 Choose 2 principle components can explain more than 90% of the variance in the model, then do Logistic Regression. We get the training accuracy: 0.901 and test accuracy: 0.995. We wonder why 1&2 both use logistic regression but get totally different results. Also, PCA reflects that the variables have multicollinearity problem.</p>

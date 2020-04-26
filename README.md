@@ -1,7 +1,7 @@
 # Consumer behavior prediction, based on Taobao data
 ## Team Member
 Name|Student ID|GitHub
-：-----：|：-----：|：-----：
+:---:|:---:|:---:
 Zhang Ping|1901212672|[Parametric3](https://github.com/Parametric3)
 Xu Chenqi|1901212653|[XuChenqi](https://github.com/XuChenqi)
 Lin Haoru|1901212609|[HalinaLin](https://github.com/HalinaLin)

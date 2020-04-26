@@ -250,11 +250,11 @@ Test accruacy|0.9821|0.9878|0.643
 F1 Score|80.11%| |
 precision|83.53%| |
 recall|76.96%| |
-<div align="center">
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="450" width="600"/>
 </div>
+
 We can see that the performance of GBRT is not as good as RF.
 
 ### Conclusion

@@ -185,7 +185,7 @@ Through statistics, we have a total of 279,525 samples, while the number of samp
 The downsampling process will affect the metrics we choose, because we found that the accuracy rate of the model on the training set can be seriously affected. So we will choose **precision**, **recall** and **F1** as our metircs. 
 
 ## 6. Model Building
-Since we would like to compare the results of using the first 2/3/4 days' data to predict the next day's purchase behavior, we use three series of data in each model below.
+Since we would like to compare the results of using the first 2/3/4 days' data to predict the next day's purchase behavior, we use three series of data in each model below. The three files([two days](./modeling_2-days.ipynb), [three days](modeling_3-days.ipynb) and [four days](modeling_4-days.ipynb)) includes all the models involved, the only difference is the datasets they use.
 ### 6.1 Beneficial Attempts
 #### 6.1.1 Lasso + Logistic Regression</p>
 We use L1 regularization to achieve variable selection. In order to reduce dimension, we gradually adjust the value of parameter "C" and there're finally 5 features selected, including:</p>

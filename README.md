@@ -40,14 +40,16 @@ Particularity of the problem:
 Since we will use the information before 18th to predict the user behavior in 18th, the next question is how many days should be considered. Intuitively, the behavior one month ago definetely has nothing to do with whether the user will buy or not. So this actually a hyperparameter that we should decide first, and then find its best value through fine-tuning. Using $\Delta$ to denote it, and we let $\Delta$ = 2 at first. Later, we will also implement the same preprocessing and model on the datasets with $\Delta$ = 3 and 4 respectively.</p>
 ### 3.3 Test Set
 Three ways to choose test set:</p>
-1. ~~All users and all items:~~
+1. All users and all items:
 ![](https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/Test_Set_Selection_1.png)
-2. ~~Users who have certain behaviors and the items that users has interactions with in the two days before :~~
+2. Users who have certain behaviors and the items that users has interactions with in the two days before :
 ![](https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/Test_Set_Selection_2.png)
 3. For each user who was active before, only condider the items that he has interactions with:
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/Test_Set_Selection_3.png" height="330" width="450"/>
 </div>
+
+Considering the handleable data size, we finally choose **the third method**, which also avoids the problem of sparse matrix at the same time.
 
 ### 3.4 Train Set
 The basic rules all the same for train set. Two things to consider:</p>
@@ -67,6 +69,8 @@ And for each feature class, like user features, the features it contains can be 
 3. Time features: Features that involve time.
 ### 4.1 Basic Features
 1. **User features** (Feature type = 1):
+
+This part is to generate features related to users, see our [code](https://github.com/Parametric3/PHBS_MLF_2019/blob/master/Features(user%20and%20category).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -88,6 +92,8 @@ Feature name| type | Explaination
 1_the_behavior_frequency|time|time lag over the total number of activities
 
 2. **Item features** (Feature type = 2):
+
+This part is to generate features related to items, see our [code](https://github.com/Parametric3/PHBS_MLF_2019/blob/master/Features(Item%20%26%20GEO%20%26%20UI).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -112,12 +118,16 @@ Feature name| type | Explaination
 
 3. **Category features** (Feature type = 3):
 
+This part is to generate features related to categories, see our [code](./Features(user%20and%20category).ipynb).
+
 Feature name| type | Explaination
 ---|---|---
 3_number_of_categories_related|statistic|number of categories that user had interaction with
 3_category_concentration_rate|ratio|number of items related over number of categories related
 
 4. **Geo features** (Feature type = 4):
+
+This part is to generate features related to locations, see our [code](https://github.com/Parametric3/PHBS_MLF_2019/blob/master/Features(Item%20%26%20GEO%20%26%20UI).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -134,6 +144,8 @@ Feature name| type | Explaination
 ### 4.2 Interactive Features
 1. **UC(User and Category) features** (Feature type = 5):
 
+This part is to generate features related to users and categories, see our [code](./Features(UC).ipynb).
+
 Feature name| type | Explaination
 ---|---|---
 5_Number_of_items|statistic| Numbers of items the user had interactions with in that category
@@ -144,6 +156,8 @@ Feature name| type | Explaination
 5_Overnight_purchase_pattern|ratio|whether the user purchase the item one day after browsing, collecting or adding into cart
 
 2. **UI(User and Item) features** (Feature type = 6):
+
+This part is to generate features related to users and items, see our [code](https://github.com/Parametric3/PHBS_MLF_2019/blob/master/Features(Item%20%26%20GEO%20%26%20UI).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -156,21 +170,26 @@ Feature name| type | Explaination
 6_UI_useritemcart_usertotalcart|ratio|The number of times the user carts the item / The user's total amount of all items added to the shopping cart
 6_UI_useritembuy_usertotalbuy|ratio|The number of times the user purchases the item / The user's total purchases of all items
 
-Note: some ratio-based indicators in this article have missing indicator data because the denominator is 0. For such indicators, the missing value is filled with 0.
+**Note**: some ratio-based indicators in this article have missing indicator data because the denominator is 0. For such indicators, the missing value is filled with 0.
 
-## Data preprocessing
-### Dealing with missing data
-We eliminate samples with missing values.
-### Standardization
+## 5. Data preprocessing
+### 5.1 Dealing with missing data
+Since our features all extracted from  the original data, the missing features have already filled up during the generating process.
+### 5.2 Standardization
 In order to eliminate the model result error caused by the size of the data itself, we standardize the data.
-### Imbalanced Sample: Up&downsampling</p>
-Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
-We need to pay attention that after we 
 
-## Model Building
-Since we would like to compare the results of using the first 2/3/4 days' data to predict the next day's purchase behavior, we use three series of data in each model below.
-### Part 1: Beneficial Attempts
-### 1. Lasso + Logistic Regression</p>
+<div align="center">
+<img src="http://latex.codecogs.com/gif.latex?\\x_{i}^{'}=\frac{x_{i}-\mu}{\sigma}"/>
+</div>
+
+### 5.3 Imbalanced Sample: Up&downsampling
+Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
+The downsampling process will affect the metrics we choose, because we found that the accuracy rate of the model on the training set can be seriously affected. So we will choose **precision**, **recall** and **F1** as our metircs. 
+
+## 6. Model Building
+Since we would like to compare the results of using the first 2/3/4 days' data to predict the next day's purchase behavior, we use three series of data in each model below. Each of the three files([two days](./modeling_2-days.ipynb), [three days](modeling_3-days.ipynb) and [four days](modeling_4-days.ipynb)) includes all the models involved, the only difference is the datasets they use.
+### 6.1 Beneficial Attempts
+#### 6.1.1 Lasso + Logistic Regression</p>
 We use L1 regularization to achieve variable selection. In order to reduce dimension, we gradually adjust the value of parameter "C" and there're finally 5 features selected, including:</p>
 Features selected|Coefficient|Explanation
 :---:|:---:|:---:
@@ -180,7 +199,7 @@ Features selected|Coefficient|Explanation
 2_item_view|-4.624e-04| The fewer relating items the user view, the more possible for him to buy this particular item.
 4_geo_view|-9.380e-06| Contradict to our common sense-- larger the ratio of purchased product number to viewed product number in the area, the more possible to buy. However, as we can see in our model the coefficient is relatively small compared with other features.
 
-(Note: Above results are based on the first 2 days' data. Using the first 3/4 days' data, we get excactly same features, and similiar coefficients.)
+(**Note**: Above results are based on the first 2 days' data. Using the first 3/4 days' data, we get excactly same features, and similiar coefficients.)
 
 We use above five features for modeling and the results are as follows:</p>
 
@@ -194,10 +213,10 @@ The results are not satisfying:</p>
 * We expect the "Interactive Features" to conduct a relatively large effect on purchase behavior, because they reflect the specific relation between the user and items. However, none of them is chosen in the model.</p>
 * The testing accuracy is too low, so do F1-score&Precision&Recall under 5-folds cross-validation.
 
-### 2. PCA + Logistic Regression
+#### 6.1.2. PCA + Logistic Regression
 After principle components analysis, we find the first principle component can explain nearly all of the variance in the model (99.95% in 2-days data). PCA reflects that our data have serious multicollinearity problem. Here's the structure of the first component in 2-days data.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="350" width="900"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" />
 </div>
 As we can see, except for "4_geo_view", which make up 99.15% in the first component, other features only make up a very small poportion (based on 2-days data, other series of data get similiar results).
 Afterwards, we apply Logistic Regression to the first component and get following results.</p>
@@ -213,15 +232,15 @@ The above two methods may not have a good performance considering prediction, ho
 * Logestic Regression is not suitable for our data structure. We consider a large number of features , including large amount of dummy variables, the data structure may be complex, but Logestic Regression is basically a linear model. </p>
 * Besides, reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset, which is consistent with our results.</p>
 
-### Part 2: Practical Models
-### 1. Random Forest
+### 6.2 Practical Models
+#### 6.2.1 Random Forest
 As a bagging method, Random forest can efficiently help us alleviate overfitting problem, and sort out some important features, eg.'5_Number_of_purchasing', '5_Category_prefernce', '5_Category_purchase_power', '5_Overnight_purchase_pattern'.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="400" width="800"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png"/>
 </div>
 Through 5-folds cross-validation, we get the ROC curve (based on 2-days data):
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="500" width="530"/>
 </div>
 
 Value|2-days|3-days|4-days
@@ -229,20 +248,20 @@ Value|2-days|3-days|4-days
 Training accruacy|0.9878|0.9895|0.9903
 Test accruacy|0.9874|0.9902|0.9913
 F1 Score|92.98%|92.72%|92.84%
-precision|89.60%|89.44%|89.90%
-recall|96.62%|96.25%|95.99%
+Precision|89.60%|89.44%|89.90%
+Recall|96.62%|96.25%|95.99%
  
 We can tell from the results that 2-days data already have a good predicting performance, getting the highest F1 score of 92.98%. Confusion matrix for 2-days data is shown below:
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for RF.png" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for RF.png" height="500" width="600"/>
 </div>
 
-### 2. GBRT (Gradient Boost Regression Tree)
+#### 6.2.2 GBRT (Gradient Boost Regression Tree)
 GBRT adopts the idea of boosting, here are the results:</p>
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="500" width="530"/>
 </div>
 
 Value|2-days|3-days|4-days
@@ -250,16 +269,16 @@ Value|2-days|3-days|4-days
 Training accruacy|0.9625|0.9630|0.9607
 Test accruacy|0.9821|0.9878|0.9889
 F1 Score|80.11%|73.82%|67.68%
-precision|83.53%|84.21%|83.41%
-recall|76.96%|65.71%|56.94%
+Precision|83.53%|84.21%|83.41%
+Recall|76.96%|65.71%|56.94%
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="500" width="600"/>
 </div>
 We can see that the performance of GBRT is not as good as RF. Meanwhile, GBRT seems to have the best performance for latest data (2-days data).
 
-### Conclusion
-### Part 1: Beneficial Attempts
+## 7. Conclusion
+### 7.1 Beneficial Attempts
 
 Value|2-days Lasso+LR|3-days Lasso+LR|4-days Lasso+LR|2-days PCA+LR|3-days PCA+LR|4-days PCA+LR
 :-: | :------: | :------: | :------:| :------: | :------: | :------: 
@@ -269,14 +288,14 @@ Test accruacy|0.617|0.589|0.667|0.995|0.996|0.996
 * Five features selected in Lasso+LR: **'1_user activity'**, **'1_number of items related'**, **'1_time lag'**, **'2_item_view'**, **'4_geo_view'**, and the coefficients are reasonable to explain. However, the test accuracy is too low.
 * One principle component is chosen by PCA, which is mostly made up by **'4_geo_view'**. However, PCA+LR tends to classify all observations into negative.
 
-### Part 2: Practical Models
+### 7.2 Practical Models
 Value|2-days RF|3-days RF|4-days RF|2-days GBRT|3-days GBRT|4-days GBRT
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
 Training accruacy|0.9878|0.9895|0.9903|0.9625|0.9630|0.9607
 Test accruacy|0.9874|0.9902|0.9913|0.9821|0.9878|0.9889
 F1 Score|92.98%|92.72%|92.84%|80.11%|73.82%|67.68%
-precision|89.60%|89.44%|89.90%|83.53%|84.21%|83.41%
-recall|96.62%|96.25%|95.99%|76.96%|65.71%|56.94%
+Precision|89.60%|89.44%|89.90%|83.53%|84.21%|83.41%
+Recall|96.62%|96.25%|95.99%|76.96%|65.71%|56.94%
 
 As far as we can see, Random Forest is a better method compared to GBRT, and 2-days data (92573 obs) outperform 3-days (136431 obs)
 and 4-days (182077 obs) regarding F1-score. In a word, applying Random Forest to the lasted two days data is an efficient way to predict purchase behavior of today.
@@ -295,3 +314,6 @@ and 4-days (182077 obs) regarding F1-score. In a word, applying Random Forest to
 **Answer**:</p>
 * Modifying the code, we find only one important component **“4_geo_view”** in the current version, which makes up 99.15% in the first component while other features only make up a very small proportion (based on 2-days data, 3-days and 4-days data get similar results).</p>
 * **4_geo_view** means the total number of items viewed in the area, which illustrates the important effect of geographical factors on consumption behaviors. However, this result also reflects that our data have serious multicollinearity problem and the first component by PCA doesn’t really make sense to some extent.</p>
+
+## Reference
+[1]  E-commerce Recommendation Algorithm Competition of Ali: [Introduction](https://tianchi.aliyun.com/competition/entrance/1/introduction)

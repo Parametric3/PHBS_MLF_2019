@@ -68,7 +68,7 @@ And for each feature class, like user features, the features it contains can be 
 ### 4.1 Basic Features
 1. **User features** (Feature type = 1):
 
-This part is to generate features related to users, see our [code](./Features(user and category).ipynb).
+This part is to generate features related to users, see our [code](https://github.com/Parametric3/PHBS_MLF_2019/blob/master/Features(user%20and%20category).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -116,7 +116,7 @@ Feature name| type | Explaination
 
 3. **Category features** (Feature type = 3):
 
-This part is to generate features related to categories, see our [code](./Features(user and category).ipynb).
+This part is to generate features related to categories, see our [code](./Features(user%20and%20category).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -125,7 +125,7 @@ Feature name| type | Explaination
 
 4. **Geo features** (Feature type = 4):
 
-This part is to generate features related to locations, see our [code](./Features(Item & GEO & UI).ipynb).
+This part is to generate features related to locations, see our [code](https://github.com/Parametric3/PHBS_MLF_2019/blob/master/Features(Item%20%26%20GEO%20%26%20UI).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -155,7 +155,7 @@ Feature name| type | Explaination
 
 2. **UI(User and Item) features** (Feature type = 6):
 
-This part is to generate features related to users and items, see our [code](./Features(Item & GEO & UI).ipynb).
+This part is to generate features related to users and items, see our [code](https://github.com/Parametric3/PHBS_MLF_2019/blob/master/Features(Item%20%26%20GEO%20%26%20UI).ipynb).
 
 Feature name| type | Explaination
 ---|---|---

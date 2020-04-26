@@ -49,7 +49,7 @@ Three ways to choose test set:</p>
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/Test_Set_Selection_3.png" height="330" width="450"/>
 </div>
 
-Considering the handleable data size, we finally choose **the third method**, which also avoid the problem of sparse matrix at the same time.
+Considering the handleable data size, we finally choose **the third method**, which also avoids the problem of sparse matrix at the same time.
 
 ### 3.4 Train Set
 The basic rules all the same for train set. Two things to consider:</p>

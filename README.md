@@ -30,15 +30,15 @@ item_category|the category of one certain item|
 
 For example, **117151719,96ulbnj,7350**.</p>
 For detailed data, see our [data](https://disk.pku.edu.cn:443/link/2B3214E55199700FDB7D21C86F93A9E7) in PKU Cloud.
-## Overall Analysis
-### Problem Type: Classification
+## 3. Overall Analysis
+### 3.1 Problem Type: Classification
 **'Prucahse'** correspodning to **'1'**, and **'Not Purchase'** corresponding to **'0'**</p>
 Particularity of the problem:
 1. The label is not just for one user or one item, but for one user-item pair **(user, item)**, which influence the selection of training set and test set
 2. This is multi-period problem. For example, for one user-item pair, its label is derived from the bahevior of 18th, while its features are derived from days before 18th. That is because we can only the past to predict the future.
-### Days that really matter
+### 3.2 Days that really matter
 Since we will use the information before 18th to predict the user behavior in 18th, the next question is how many days should be considered. Intuitively, the behavior one month ago definetely has nothing to do with whether the user will buy or not. So this actually a hyperparameter that we should decide first, and then find its best value through fine-tuning. Using $\Delta$ to denote it, and we let $\Delta$ = 2 at first. Later, we will also implement the same preprocessing and model on the datasets with $\Delta$ = 3 and 4 respectively.</p>
-### Test Set
+### 3.3 Test Set
 Three ways to choose test set:</p>
 1. ~~All users and all items:~~
 ![](https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/Test_Set_Selection_1.png)
@@ -49,7 +49,7 @@ Three ways to choose test set:</p>
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/Test_Set_Selection_3.png" height="330" width="450"/>
 </div>
 
-### Train Set
+### 3.4 Train Set
 The basic rules all the same for train set. Two things to consider:</p>
 1. As customary, we set the ratio between the training set and the test set to be 4:1. So since we have choose **(16, 17 → 18)** as the test set (before '→', the features of test set; after '→', the labels of the test set), we need to choose another four groups.
 2. If we count back from 18th, the abnormal comsumption in 12th, December will distrurb our model greatly, so we need to skip that when choose the train set.

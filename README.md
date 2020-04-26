@@ -267,8 +267,8 @@ Value|2-days Lasso+LR|3-days Lasso+LR|4-days Lasso+LR|2-days PCA+LR|3-days PCA+L
 Training accruacy|0.901|0.922|0.925|0.901|0.922|0.925
 Test accruacy|0.617|0.589|0.667|0.995|0.996|0.996
 
-* 1. Five features selected in Lasso+LR: '1_user activity', '1_number of items related', '1_time lag', '2_item_view', '4_geo_view', and the coefficients are reasonable to explain. However, the test accuracy is too low.
-* 2. One principle component is chosen by PCA, which is mostly made up by '4_geo_view'. However, PCA+LR tends to classify all observations into negative.
+* Five features selected in Lasso+LR: **'1_user activity'**, **'1_number of items related'**, **'1_time lag'**, **'2_item_view'**, **'4_geo_view'**, and the coefficients are reasonable to explain. However, the test accuracy is too low.
+* One principle component is chosen by PCA, which is mostly made up by **'4_geo_view'**. However, PCA+LR tends to classify all observations into negative.
 
 ### Part 2: Practical Models
 Value|2-days RF|3-days RF|4-days RF|2-days GBRT|3-days GBRT|4-days GBRT

@@ -239,7 +239,7 @@ recall|96.62%|96.25%|
 ### 2. GBRT (Gradient Boost Regression Tree)
 GBRT adopts the idea of boosting, here are the results.</p>
 
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
+<div align=center><img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
 </div>
 
 Value|2-days|3-days|4-days

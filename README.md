@@ -193,7 +193,7 @@ Choose 2 principle components can explain more than 90% of the variance in the m
 </div>
 
 Possible explanations for the unideal results:</p>
-a. Logistic regression is essentially a linear model. We add a large number of features(including dummy variables) to improve the accuracy. However, the data structure is so complex that it may not adapt to a simple linear model. Reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset.</p>
+a. Logistic regression is essentially a linear model. We add a large number of features(including dummy variables) to improve the accuracy. However, the data structure is so complex that it may not adapt to a simple linear model. Besides, reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset, which is consistent with our results.</p>
 b. As for the higer testing accurary than training accruraty, we think </p>
 
 ### 3. SVM</p>

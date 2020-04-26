@@ -222,6 +222,7 @@ Through 5-folds cross-validation, we get the ROC curve (based on 2-days data).
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="600"/>
 </div>
+</p>
 Value|2-days|3-days|4-days
 :---:|:---:|:---:|:---:
 Training accruacy|0.9878|0.922|0.925
@@ -251,11 +252,14 @@ Using the first two days data to predict the third day is
 ### Appendix
 ## Explanations for Professor's Comments
 **Comment 1** :
-In many models, test accuracy is significatly higher than training accuracy. (PCA+LR, SVM, RF, GBRT) The only result that makes sense to me is LASSO + LR. I think there is something wrong. 
-**Answer":
+In many models, test accuracy is significatly higher than training accuracy. (PCA+LR, SVM, RF, GBRT) The only result that makes sense to me is LASSO + LR. I think there is something wrong. </p>
+**Answer**:
+We indeed get test accuracy much higher than training in some model, which does not make sense.</p>
+Checking the confusion matrix, we find the True Positive Rate is really low, that is to say this method tends to classify all the observations into Negative. As a result, the  **up & down sampling** method for only the training set instead of for both the training and testing make a difference, leading to higher accuracy in testing set than in training one. </p>
+Besides, we think the accuracy ratio is not that important due to the extremely imbalanced samples (much more “Not Purchase” than “Purchase” samples) . As a matter of fact, the tianchi competition only focus on the F1 score.</p>
 
 **Comment 2** :
-Try to interpret the result. What is the feature importance? What is the first two PCA factors meaning? That is as important as increasing accuracy. 
+Try to interpret the result. What is the feature importance? What is the first two PCA factors meaning? That is as important as increasing accuracy. </p>
 **Answer":
 
 

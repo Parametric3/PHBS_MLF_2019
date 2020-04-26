@@ -233,7 +233,7 @@ precision|89.60%| |
 recall|96.62%| |
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for RF.jpg" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for RF.png" height="450" width="600"/>
 </div>
 
 ### 2. GBRT (Gradient Boost Regression Tree)--boosting
@@ -252,7 +252,7 @@ recall|76.96%| |
 <div align="center">
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.jpg" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="450" width="600"/>
 </div>
 We can see that the performance of GBRT is not as good as RF.
 

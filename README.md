@@ -184,10 +184,10 @@ In order to eliminate the model result error caused by the size of the data itse
 Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
 The downsampling process will affect the metrics we choose, because we found that the accuracy rate of the model on the training set can be seriously affected. So we will choose **precision**, **recall** and **F1** as our metircs. 
 
-## Model Building
+## 6. Model Building
 Since we would like to compare the results of using the first 2/3/4 days' data to predict the next day's purchase behavior, we use three series of data in each model below.
-### Part 1: Beneficial Attempts
-### 1. Lasso + Logistic Regression</p>
+### 6.1 Beneficial Attempts
+#### 6.1.1 Lasso + Logistic Regression</p>
 We use L1 regularization to achieve variable selection. In order to reduce dimension, we gradually adjust the value of parameter "C" and there're finally 5 features selected, including:</p>
 Features selected|Coefficient|Explanation
 :---:|:---:|:---:
@@ -197,7 +197,7 @@ Features selected|Coefficient|Explanation
 2_item_view|-4.624e-04| The fewer relating items the user view, the more possible for him to buy this particular item.
 4_geo_view|-9.380e-06| Contradict to our common sense-- larger the ratio of purchased product number to viewed product number in the area, the more possible to buy. However, as we can see in our model the coefficient is relatively small compared with other features.
 
-(Note: Above results are based on the first 2 days' data. Using the first 3/4 days' data, we get excactly same features, and similiar coefficients.)
+(**Note**: Above results are based on the first 2 days' data. Using the first 3/4 days' data, we get excactly same features, and similiar coefficients.)
 
 We use above five features for modeling and the results are as follows:</p>
 
@@ -211,10 +211,10 @@ The results are not satisfying:</p>
 * We expect the "Interactive Features" to conduct a relatively large effect on purchase behavior, because they reflect the specific relation between the user and items. However, none of them is chosen in the model.</p>
 * The testing accuracy is too low, so do F1-score&Precision&Recall under 5-folds cross-validation.
 
-### 2. PCA + Logistic Regression
+#### 6.1.2. PCA + Logistic Regression
 After principle components analysis, we find the first principle component can explain nearly all of the variance in the model (99.95% in 2-days data). PCA reflects that our data have serious multicollinearity problem. Here's the structure of the first component in 2-days data.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="350" width="900"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" />
 </div>
 As we can see, except for "4_geo_view", which make up 99.15% in the first component, other features only make up a very small poportion (based on 2-days data, other series of data get similiar results).
 Afterwards, we apply Logistic Regression to the first component and get following results.</p>
@@ -230,11 +230,11 @@ The above two methods may not have a good performance considering prediction, ho
 * Logestic Regression is not suitable for our data structure. We consider a large number of features , including large amount of dummy variables, the data structure may be complex, but Logestic Regression is basically a linear model. </p>
 * Besides, reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset, which is consistent with our results.</p>
 
-### Part 2: Practical Models
-### 1. Random Forest
+### 6.2 Practical Models
+#### 6.2.1 Random Forest
 As a bagging method, Random forest can efficiently help us alleviate overfitting problem, and sort out some important features, eg.'5_Number_of_purchasing', '5_Category_prefernce', '5_Category_purchase_power', '5_Overnight_purchase_pattern'.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="400" width="800"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png"/>
 </div>
 Through 5-folds cross-validation, we get the ROC curve (based on 2-days data):
 <div align="center">

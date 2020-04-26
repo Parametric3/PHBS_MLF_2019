@@ -1,7 +1,7 @@
 # Consumer behavior prediction, based on Taobao data
 ## Team Member
 Name|Student ID|GitHub
----|--|---
+:---:|:---:|:---:
 Zhang Ping|1901212672|[Parametric3](https://github.com/Parametric3)
 Xu Chenqi|1901212653|[XuChenqi](https://github.com/XuChenqi)
 Lin Haoru|1901212609|[HalinaLin](https://github.com/HalinaLin)
@@ -186,10 +186,10 @@ Features selected|Coefficient|Explanation
 We use above five features for modeling and the results are as follows:</p>
 
 Value|2-days|3-days|4-days
-:---:|:---:|:---:|:---:
-Parameter C|0.0000065|0.0000085|
+:-: | :------: | :------: | :------: 
+Parameter C|0.0000065|0.0000065|
 Training accruacy|0.901|0.922|0.925
-Test accruacy|0.617|0.589|0.643
+Test accruacy|0.617|0.591|0.643
 
 The results are not satisfying:
 a. We expect the "Interactive Features" to conduct a relatively large effect on purchase behavior, because they reflect the specific relation between the user and items. However, none of them is chosen in the model.</p>
@@ -204,7 +204,7 @@ As we can see, except for "4_geo_view", which make up 99.15% in the first compon
 Afterwards, we apply Logistic Regression to the first component and get following results.</p>
 
 Value|2-days|3-days|4-days
-:---:|:---:|:---:|:---:
+:-: | :------: | :------: | :------: 
 Training accruacy|0.901|0.922|0.925
 Test accruacy|0.995|0.996|0.643
 
@@ -246,9 +246,9 @@ Value|2-days|3-days|4-days
 :---:|:---:|:---:|:---:
 Training accruacy|0.9625|0.9630|0.925
 Test accruacy|0.9821|0.9878|0.643
-F1 Score|80.11%|73.82%|
-precision|83.53%|84.21%|
-recall|76.96%|65.71%|
+F1 Score|80.11%| |
+precision|83.53%| |
+recall|76.96%| |
 <div align="center">
 
 <div align="center">

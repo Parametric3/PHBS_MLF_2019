@@ -170,12 +170,12 @@ Through statistics, we have a total of 279,525 samples, while the number of samp
 ## Model Building
 ### 1. Lasso Logistic Regression</p>
 We use L1 regularization to achieve variable selection. In order to prevent overfitting, we gradually reduce the parameter "C" and find that when C=0.0000085, there're 5 features selected, including:
-a.'1_user activity'
-b.'1_number of items related'
-c.'1_first time online'
-d.'2_item_view'
-e.'4_geo_view'
-We use these five features for modeling and the results are as follows:
+a.'1_user activity'</p>
+b.'1_number of items related'</p>
+c.'1_first time online'</p>
+d.'2_item_view'</p>
+e.'4_geo_view'</p>
+We use these five features for modeling and the results are as follows:</p>
 
 Evaluation|2-days|3-days
 :---:|:---:|:---:
@@ -184,7 +184,7 @@ Testing accruacy|0.589|0.591
 F1_score|0.00%|0.00%
 
 This result doesn't really make sense. Based on our previous explanation about the 6 categories of features, the "Interactive Features" which reflect the specific relation between the user and items, may conduct largest effect on the following consumption behavior. However, none of the "Interactive Features" are included in the 5 features selected. </p>
-As a result, we try to use PCA to identify patterns in data based on the correlation between features.
+As a result, we try to use PCA to identify patterns in data based on the correlation between features.</p>
 
 ### 2. PCA + Logistic Regression
 Choose 2 principle components can explain more than 90% of the variance in the model, then do Logistic Regression. We get the training accuracy: 0.901 and test accuracy: 0.995. We wonder why 1&2 both use logistic regression but get totally different results. Also, PCA reflects that the variables have multicollinearity problem.</p>
@@ -193,8 +193,8 @@ Choose 2 principle components can explain more than 90% of the variance in the m
 </div>
 
 Possible explanations for the unideal results:</p>
-a.Logistic regression is essentially a linear model. We add a large number of features(including dummy variables) to improve the accuracy. However, the data structure is so complex that it may not adapt to a simple linear model. Reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset.
-b.As for the higer testing accurary than training accruraty, we think 
+a.Logistic regression is essentially a linear model. We add a large number of features(including dummy variables) to improve the accuracy. However, the data structure is so complex that it may not adapt to a simple linear model. Reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset.</p>
+b.As for the higer testing accurary than training accruraty, we think </p>
 
 ### 3. SVM</p>
 We get the training accuracy: 0.945 and test accuracy: 0.995.

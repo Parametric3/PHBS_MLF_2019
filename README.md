@@ -200,7 +200,7 @@ After principle components analysis, we find the first principle component can e
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="650"/>
 </div>
 As we can see, except for "4_geo_view", which make up 99.15% in the first component, other features only make up a very small poportion.
-Afterwards, we apply Logistic Regression to the first component and get following results.
+Afterwards, we apply Logistic Regression to the first component and get following results.</p>
 Value|2-days|3-days|4-days
 :---:|:---:|:---:
 Training accruacy|0.901|0.922|0.925
@@ -208,32 +208,43 @@ Test accruacy|0.995|0.591|0.643
 
 We get test accruacy much higher than training, which does not make sense. Checking the confusion matrix, we find the True Positive Rate is really low, that is to say this method tends to classify all the observations into Negative, thus resulting the high test accruacy since the buying behavior is so rare.
 
-The above two method may not have a good performance considering prediction, however, we get a better understanding of our data through them. Possible explanations for the so far unsatisfactory results:</p>
+The above two methods may not have a good performance considering prediction, however, we get a better understanding of our data through them. Possible explanations for the so far unsatisfactory results:</p>
 Logestic Regression is not suitable for our data structure. We consider a large number of features , including large amount of dummy variables, the data structure may be complex, but Logestic Regression is basically a linear model. Besides, reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset, which is consistent with our results.</p>
 
-### 3. SVM</p>
-We get the training accuracy: 0.945 and test accuracy: 0.995.
-
-### 4. Random Forest--bagging</p>
-We get the training accuracy: 0.966 and test accuracy: 0.972. Important features include 'item_buy_add' and 'item_viewpeople'.</p>
+### Part 2: Practical Models
+### 1. Random Forest
+As a bagging method, Random forest can efficiently help us alleviate overfitting problem, and sort out some important features, eg.'5_Number_of_purchasing', '5_Category_prefernce', '5_Category_purchase_power', '5_Overnight_purchase_pattern'.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/FI.png" height="400" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="400" width="650"/>
 </div>
-
-Through 5-folds cross-validation, we get F1- score 80.53%, which is quite nice. As the ROC curve shows, AUC is 0.91.
-
+Through 5-folds cross-validation, we get the ROC curve (based on 2-days data).
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="650"/>
 </div>
+Value|2-days|3-days|4-days
+:---:|:---:|:---:
+Training accruacy|0.9878|0.922|0.925
+Test accruacy|0.9874|0.591|0.643
+F1 Score|92.98%| |
+precision|89.60%| |
+recall|96.62%| |
 
-### 5. GBRT (Gradient Boost Regression Tree)--boosting</p>
-We get the training accuracy: 0.925 and test accuracy: 0.989. AUC is 0.65.
-
+### 2. GBRT (Gradient Boost Regression Tree)--boosting
+GBRT adopts the idea of boosting, here are the results.</p>
+Value|2-days|3-days|4-days
+:---:|:---:|:---:
+Training accruacy|0.9625|0.922|0.925
+Test accruacy|0.9821|0.591|0.643
+F1 Score|80.11%|
+precision|83.53%|
+recall|76.96%|
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="650"/>
 </div>
+We can see that the performance of GBRT is not as good as RF.
 
 ### Conclusion
-SVM and Random Forest are suitable method for our data.
+As far as we can see, Random Forest a very suitable method for our data.
+Using the first two days data to predict the third day is 
 
 

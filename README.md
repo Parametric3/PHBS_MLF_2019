@@ -40,9 +40,9 @@ Particularity of the problem:
 Since we will use the information before 18th to predict the user behavior in 18th, the next question is how many days should be considered. Intuitively, the behavior one month ago definetely has nothing to do with whether the user will buy or not. So this actually a hyperparameter that we should decide first, and then find its best value through fine-tuning. Using $\Delta$ to denote it, and we let $\Delta$ = 2 at first. Later, we will also implement the same preprocessing and model on the datasets with $\Delta$ = 3 and 4 respectively.</p>
 ### 3.3 Test Set
 Three ways to choose test set:</p>
-1. ~~All users and all items:~~
+1. All users and all items:
 ![](https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/Test_Set_Selection_1.png)
-2. ~~Users who have certain behaviors and the items that users has interactions with in the two days before :~~
+2. Users who have certain behaviors and the items that users has interactions with in the two days before :
 ![](https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/Test_Set_Selection_2.png)
 3. For each user who was active before, only condider the items that he has interactions with:
 <div align="center">
@@ -91,7 +91,7 @@ Feature name| type | Explaination
 
 2. **Item features** (Feature type = 2):
 
-This part is to generate features related to items, see our [code](./Features(item and geo).ipynb).
+This part is to generate features related to items, see our [code](./Features(Item & GEO & UI).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -125,7 +125,7 @@ Feature name| type | Explaination
 
 4. **Geo features** (Feature type = 4):
 
-This part is to generate features related to locations, see our [code](./Features(item and geo).ipynb).
+This part is to generate features related to locations, see our [code](./Features(Item & GEO & UI).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -155,7 +155,7 @@ Feature name| type | Explaination
 
 2. **UI(User and Item) features** (Feature type = 6):
 
-This part is to generate features related to users and items, see our [code](./Features(UI).ipynb).
+This part is to generate features related to users and items, see our [code](./Features(Item & GEO & UI).ipynb).
 
 Feature name| type | Explaination
 ---|---|---
@@ -176,7 +176,9 @@ Since our features all extracted from  the original data, the missing features h
 ### 5.2 Standardization
 In order to eliminate the model result error caused by the size of the data itself, we standardize the data.
 
-![](http://latex.codecogs.com/gif.latex?\\x_{i}^{'}=\frac{x_{i}-\mu}{\sigma})
+<div align="center">
+<img src="http://latex.codecogs.com/gif.latex?\\x_{i}^{'}=\frac{x_{i}-\mu}{\sigma}"/>
+</div>
 
 ### 5.3 Imbalanced Sample: Up&downsampling
 Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>

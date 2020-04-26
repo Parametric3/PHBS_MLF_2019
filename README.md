@@ -168,19 +168,27 @@ In order to eliminate the model result error caused by the size of the data itse
 Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
 
 ## Model Building
-### 1. Lasso Logistic Regression</p>
-We use L1 regularization to achieve variable selection. In order to prevent overfitting, we gradually reduce the parameter "C" and find that when C=0.0000085, there're 5 features selected, including:</p>
-a. '1_user activity'</p>
-b. '1_number of items related'</p>
-c. '1_first time online'</p>
-d. '2_item_view'</p>
-e. '4_geo_view'</p>
-We use these five features for modeling and the results are as follows:</p>
+Since we would like to compare the results of using the first two days' data to predict the third day's purchase behavior and the first three days', we use two series of data in each model below.
+### Part 1: Beneficial Attempts
+### 1. Lasso + Logistic Regression</p>
+We use L1 regularization to achieve variable selection. In order to reduce dimension, we gradually adjust the value of parameter "C" and there're finally 5 features selected, including:</p>
+Features selected|Coefficient|Explanation
+:---:|:---:|:---:
+1_user activity|3.45932291e-04|The more active is the user, the more possible for him to buy.
+1_number of items related|-2.85615479e-03|The fewer relating items the user interacts with, the more possible for him to buy this particular item.
+1_time lag|-2.19922185e-02| Shorter the time lag between first and last time online, the more possible to buy， probably because the so called ‘consumption impulse’. When the user spends more time viewing the items, he may become more rational and find there’s no need to buy. 
+2_item_view|-4.62399887e-04| The fewer relating items the user view, the more possible for him to buy this particular item.
+4_geo_view|-9.37961849e-06| Contradict to our common sense-- larger the ratio of purchased product number to viewed product number in the area, the more possible to buy. However, as we can see in our model the coefficient is relatively small compared with other features.
+
+We use above five features for modeling and the results are as follows:</p>
 
 Evaluation|2-days|3-days
 :---:|:---:|:---:
+Parameter C|0.0000065|0.0000085
 Training accruacy|0.901|0.922
-Testing accruacy|0.589|0.591
+Testing accruacy|0.617|0.591
+precision|0.00%|0.00%
+recall|0.00%|0.00%
 F1_score|0.00%|0.00%
 
 This result doesn't really make sense. Based on our previous explanation about the 6 categories of features, the "Interactive Features" which reflect the specific relation between the user and items, may conduct largest effect on the following consumption behavior. However, none of the "Interactive Features" are included in the 5 features selected. </p>
@@ -194,7 +202,7 @@ Choose 2 principle components can explain more than 90% of the variance in the m
 
 Possible explanations for the unideal results:</p>
 a. Logistic regression is essentially a linear model. We add a large number of features(including dummy variables) to improve the accuracy. However, the data structure is so complex that it may not adapt to a simple linear model. Besides, reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset, which is consistent with our results.</p>
-b. As for the higer testing accurary than training accruraty, we think our **up & down sampling** method for only the training set instead of for both the training and testing set may be a reason. In addition, we think the accuracy ratio is not that important due to the extremely imbalanced samples (much more “Not Purchase” than “Purchase” samples). As a matter of fact, the tianchi competition only focus on the F1 score rathan than the accurary. </p>
+b. As for the higer testing accurary than training accruraty, we think </p>
 
 ### 3. SVM</p>
 We get the training accuracy: 0.945 and test accuracy: 0.995.
@@ -221,31 +229,4 @@ We get the training accuracy: 0.925 and test accuracy: 0.989. AUC is 0.65.
 ### Conclusion
 SVM and Random Forest are suitable method for our data.
 
-## Future Work
-1. Introduce interaction terms;</p>
-2. Try combination of models;</p>
-### Example (Source: Tianchi Bigdata)
-### RF+GBRT</p>
-**Combination1**</p>
-a. Use RF to train, output is y_rf;</p>
-b. Use GBRT to train under y-y_rf;</p>
-c. Use the average of a&b when predict.</p>
-<div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/RF+GBRT1.png" height="300" width="850"/>
-</div>
 
-**Combination2**</p>
-a. Use RF to get random features;</p>
-b. Use GBRT for those features;</p>
-c. Use the average of multiple GBRT outputs when predict.</p>
-<div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/RF+GBRT2.png" height="300" width="600"/>
-</div>
-
-### GBRT+LR</p>
-Stucture/depth/learning rate/iteration are adjusted accordingly</p>
-<div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/LR+GBRT.png" height="330" width="750"/>
-</div>
-
-3. Optimize the parameters in the model using gradient search;</p>

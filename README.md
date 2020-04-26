@@ -159,8 +159,8 @@ Through statistics, we have a total of 279,525 samples, while the number of samp
 Use L1 regularization to achieve variable selection</p>
 When C=0.0000085, there're 5 features selected, including '1_user activity', '1_number of items related','1_first time online','2_item_view','4_geo_view',which doesn't really make sense.Therefore, we don't adopt this model.</p>
 
-Evaluation |2-days | 3-days |4-days
----|---|---
+Evaluation|2-days|3-days|4-days
+:---:|:---:|:---:|:---:
 Training accruacy|0.901|0.922|
 Testing accruacy|0.589|0.591|
 F1_score|0.00%|0.00%|

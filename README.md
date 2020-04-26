@@ -231,9 +231,16 @@ Test accruacy|0.9874|0.591|0.643
 F1 Score|92.98%| |
 precision|89.60%| |
 recall|96.62%| |
-
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for RF.png" height="450" width="600"/>
+</div>
 ### 2. GBRT (Gradient Boost Regression Tree)--boosting
 GBRT adopts the idea of boosting, here are the results.</p>
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
+</div>
+
 Value|2-days|3-days|4-days
 :---:|:---:|:---:|:---:
 Training accruacy|0.9625|0.922|0.925
@@ -241,8 +248,9 @@ Test accruacy|0.9821|0.591|0.643
 F1 Score|80.11%| |
 precision|83.53%| |
 recall|76.96%| |
+
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="450" width="600"/>
 </div>
 We can see that the performance of GBRT is not as good as RF.
 

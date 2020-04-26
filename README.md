@@ -158,14 +158,15 @@ Feature name| type | Explaination
 
 Note: some ratio-based indicators in this article have missing indicator data because the denominator is 0. For such indicators, the missing value is filled with 0.
 
-## Data preprocessing
-### Dealing with missing data
-We eliminate samples with missing values.
-### Standardization
+## 5. Data preprocessing
+### 5.1 Dealing with missing data
+Since our features all extracted from  the original data, the missing features have already filled up during the generating process.
+### 5.2 Standardization
 In order to eliminate the model result error caused by the size of the data itself, we standardize the data.
-### Imbalanced Sample: Up&downsampling</p>
+![](http://latex.codecogs.com/gif.latex?\\x_{i}^{'}=\frac{x_{i}-\mu }{\sigma})
+### 5.3 Imbalanced Sample: Up&downsampling
 Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
-We need to pay attention that after we 
+The downsampling process will affect the metrics we choose, because we found that the accuracy rate of the model on the training set can be seriously affected. So we will choose **precision**, **recall** and **F1** as our metircs. 
 
 ## Model Building
 Since we would like to compare the results of using the first 2/3/4 days' data to predict the next day's purchase behavior, we use three series of data in each model below.

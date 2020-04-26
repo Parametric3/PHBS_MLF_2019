@@ -241,7 +241,6 @@ We can tell from the results that 2-days data already have a good predicting per
 ### 2. GBRT (Gradient Boost Regression Tree)
 GBRT adopts the idea of boosting, here are the results:</p>
 
-<div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
 </div>
 
@@ -252,15 +251,34 @@ Test accruacy|0.9821|0.9878|0.9889
 F1 Score|80.11%|73.82%|67.68%
 precision|83.53%|84.21%|83.41%
 recall|76.96%|65.71%|56.94%
+<div align="center">
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="450" width="600"/>
 </div>
-We can see that the performance of GBRT is not as good as RF.
+We can see that the performance of GBRT is not as good as RF. Meanwhile, GBRT seems to have the best performance for latest data (2-days data).
 
 ### Conclusion
-As far as we can see, Random Forest a very suitable method for our data.
-Using the first two days data to predict the third day is 
+### Part 1: Beneficial Attempts
+Value|2-days Lasso+LR|3-days Lasso+LR|4-days Lasso+LR|2-days PCA+LR|3-days PCA+LR|4-days PCA+LR
+:-: | :------: | :------: | :------:| :------: | :------: | :------: | :------: | :------: | :------: 
+Training accruacy|0.901|0.922|0.925|0.901|0.922|0.925
+Test accruacy|0.617|0.589|0.667|0.995|0.996|0.996
+
+1. Five features selected in Lasso+LR: '1_user activity', '1_number of items related', '1_time lag', '2_item_view', '4_geo_view', and the coefficients are reasonable to explain. However, the test accuracy is too low.
+2. One principle component is chosen by PCA, which is mostly made up by '4_geo_view'. However, PCA+LR tends to classify all observations into negative.
+
+### Part 2: Practical Models
+Value|2-days RF|3-days RF|4-days RF|2-days GBRT|3-days GBRT|4-days GBRT
+:---:|:---:|:---:|:---:|:---:|:---:|:---:
+Training accruacy|0.9878|0.9895|0.9903|0.9625|0.9630|0.9607
+Test accruacy|0.9874|0.9902|0.9913|0.9821|0.9878|0.9889
+F1 Score|92.98%|92.72%|92.84%|80.11%|73.82%|67.68%
+precision|89.60%|89.44%|89.90%|83.53%|84.21%|83.41%
+recall|96.62%|96.25%|95.99%|76.96%|65.71%|56.94%
+
+As far as we can see, Random Forest is a better method compared to GBRT, and 2-days data (92573 obs) outperform 3-days (136431 obs)
+and 4-days (182077 obs) regarding F1-score. In a word, applying Random Forest to the lasted two days data is an efficient way to predict purchase behavior of today.
 
 ## Appendix
 ### Explanations for Professor's Comments

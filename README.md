@@ -239,6 +239,7 @@ recall|96.62%|96.25%|95.99%
 ### 2. GBRT (Gradient Boost Regression Tree)
 GBRT adopts the idea of boosting, here are the results.</p>
 
+<div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
 </div>
 
@@ -249,7 +250,6 @@ Test accruacy|0.9821|0.9878|0.9889
 F1 Score|80.11%|73.82%|67.68%
 precision|83.53%|84.21%|83.41%
 recall|76.96%|65.71%|56.94%
-<div align="center">
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="450" width="600"/>

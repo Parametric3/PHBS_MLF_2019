@@ -198,7 +198,7 @@ b. The testing accuracy is too low, so do F1-score&Precision&Recall under 5-fold
 ### 2. PCA + Logistic Regression
 After principle components analysis, we find the first principle component can explain nearly all of the variance in the model (99.95% in 2-days data). PCA reflects that our data have serious multicollinearity problem. Here's the structure of the first component in 2-days data.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="800"/>
 </div>
 As we can see, except for "4_geo_view", which make up 99.15% in the first component, other features only make up a very small poportion.
 Afterwards, we apply Logistic Regression to the first component and get following results.</p>
@@ -216,11 +216,11 @@ Logestic Regression is not suitable for our data structure. We consider a large 
 ### 1. Random Forest
 As a bagging method, Random forest can efficiently help us alleviate overfitting problem, and sort out some important features, eg.'5_Number_of_purchasing', '5_Category_prefernce', '5_Category_purchase_power', '5_Overnight_purchase_pattern'.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="400" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/IF.png" height="400" width="800"/>
 </div>
 Through 5-folds cross-validation, we get the ROC curve (based on 2-days data).
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="600"/>
 </div>
 Value|2-days|3-days|4-days
 :---:|:---:|:---:|:---:
@@ -240,7 +240,7 @@ F1 Score|80.11%|
 precision|83.53%|
 recall|76.96%|
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="650"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
 </div>
 We can see that the performance of GBRT is not as good as RF.
 

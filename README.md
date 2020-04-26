@@ -238,7 +238,7 @@ As a bagging method, Random forest can efficiently help us alleviate overfitting
 </div>
 Through 5-folds cross-validation, we get the ROC curve (based on 2-days data):
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg"/>
 </div>
 
 Value|2-days|3-days|4-days
@@ -252,14 +252,14 @@ recall|96.62%|96.25%|95.99%
 We can tell from the results that 2-days data already have a good predicting performance, getting the highest F1 score of 92.98%. Confusion matrix for 2-days data is shown below:
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for RF.png" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for RF.png"/>
 </div>
 
-### 2. GBRT (Gradient Boost Regression Tree)
+#### 6.2.2 GBRT (Gradient Boost Regression Tree)
 GBRT adopts the idea of boosting, here are the results:</p>
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg"/>
 </div>
 
 Value|2-days|3-days|4-days
@@ -271,12 +271,12 @@ precision|83.53%|84.21%|83.41%
 recall|76.96%|65.71%|56.94%
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="450" width="600"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" />
 </div>
 We can see that the performance of GBRT is not as good as RF. Meanwhile, GBRT seems to have the best performance for latest data (2-days data).
 
-### Conclusion
-### Part 1: Beneficial Attempts
+## 7. Conclusion
+### 7.1 Beneficial Attempts
 
 Value|2-days Lasso+LR|3-days Lasso+LR|4-days Lasso+LR|2-days PCA+LR|3-days PCA+LR|4-days PCA+LR
 :-: | :------: | :------: | :------:| :------: | :------: | :------: 
@@ -286,7 +286,7 @@ Test accruacy|0.617|0.589|0.667|0.995|0.996|0.996
 * Five features selected in Lasso+LR: **'1_user activity'**, **'1_number of items related'**, **'1_time lag'**, **'2_item_view'**, **'4_geo_view'**, and the coefficients are reasonable to explain. However, the test accuracy is too low.
 * One principle component is chosen by PCA, which is mostly made up by **'4_geo_view'**. However, PCA+LR tends to classify all observations into negative.
 
-### Part 2: Practical Models
+### 7.2 Practical Models
 Value|2-days RF|3-days RF|4-days RF|2-days GBRT|3-days GBRT|4-days GBRT
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
 Training accruacy|0.9878|0.9895|0.9903|0.9625|0.9630|0.9607
@@ -312,3 +312,6 @@ and 4-days (182077 obs) regarding F1-score. In a word, applying Random Forest to
 **Answer**:</p>
 * Modifying the code, we find only one important component **“4_geo_view”** in the current version, which makes up 99.15% in the first component while other features only make up a very small proportion (based on 2-days data, 3-days and 4-days data get similar results).</p>
 * **4_geo_view** means the total number of items viewed in the area, which illustrates the important effect of geographical factors on consumption behaviors. However, this result also reflects that our data have serious multicollinearity problem and the first component by PCA doesn’t really make sense to some extent.</p>
+
+## Reference
+[1]  E-commerce Recommendation Algorithm Competition of Ali: [Introduction](https://tianchi.aliyun.com/competition/entrance/1/introduction)

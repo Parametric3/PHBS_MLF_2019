@@ -238,7 +238,7 @@ As a bagging method, Random forest can efficiently help us alleviate overfitting
 </div>
 Through 5-folds cross-validation, we get the ROC curve (based on 2-days data):
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="500" width="550"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for RF.jpg" height="500" width="530"/>
 </div>
 
 Value|2-days|3-days|4-days
@@ -252,14 +252,14 @@ recall|96.62%|96.25%|95.99%
 We can tell from the results that 2-days data already have a good predicting performance, getting the highest F1 score of 92.98%. Confusion matrix for 2-days data is shown below:
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for RF.png" height="500" width="550"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for RF.png" height="500" width="600"/>
 </div>
 
 #### 6.2.2 GBRT (Gradient Boost Regression Tree)
 GBRT adopts the idea of boosting, here are the results:</p>
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="500" width="550"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="500" width="530"/>
 </div>
 
 Value|2-days|3-days|4-days
@@ -271,7 +271,7 @@ precision|83.53%|84.21%|83.41%
 recall|76.96%|65.71%|56.94%
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="500" width="550"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="500" width="600"/>
 </div>
 We can see that the performance of GBRT is not as good as RF. Meanwhile, GBRT seems to have the best performance for latest data (2-days data).
 

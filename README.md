@@ -141,6 +141,19 @@ Feature name| type | Explaination
 5_Category_purchase_power|ratio|Number of purchasing behaviors in that category divided by numbers of items the user had interactions with in that category
 5_Overnight_purchase_pattern|ratio|whether the user purchase the item one day after browsing, collecting or adding into cart
 
+6. **UI(User and Item) features** (Feature type = 6):
+
+Feature name| type | Explaination
+---|---|---
+6_UI_useritemview|statistic|The number of times the user viewed the item
+6_UI_useritemcollect|statistic|The number of times the user collected the item
+6_UI_useritemcart|statistic|The number of times the user carted the item
+6_UI_useritembuy|statistic|The number of times the user purchased the item
+6_UI_useritemview_usertotalview|ratio|The number of times the user views the item / The user's total views of all items
+6_UI_useritemcollect_usertotalcollect|ratio|The number of times the user collects the item / The user's total collection of all items
+6_UI_useritemcart_usertotalcart|ratio|The number of times the user carts the item / The user's total amount of all items added to the shopping cart
+6_UI_useritembuy_usertotalbuy|ratio|The number of times the user purchases the item / The user's total purchases of all items
+
 Note: some ratio-based indicators in this article have missing indicator data because the denominator is 0. For such indicators, the missing value is filled with 0.
 
 ### Interactive Features

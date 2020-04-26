@@ -67,7 +67,7 @@ And for each feature class, like user features, the features it contains can be 
 3. Time features: Features that involve time.
 ### 4.1 Basic Features
 1. **User features** (Feature type = 1):
-
+This part is to generate features related to users, see our [code](./Features(user and category).ipynb)
 Feature name| type | Explaination
 ---|---|---
 1_user_activity|statistic|number of user actions in the two days
@@ -88,7 +88,7 @@ Feature name| type | Explaination
 1_the_behavior_frequency|time|time lag over the total number of activities
 
 2. **Item features** (Feature type = 2):
-
+This part is to generate features related to items, see our [code](./Features(item and geo).ipynb)
 Feature name| type | Explaination
 ---|---|---
 2_item_buy|statistic| number of times the product was purchased in the two days
@@ -111,14 +111,14 @@ Feature name| type | Explaination
 2_item_frequentaddpeople_addpeople|ratio|ratio of number of users who carted the product multiple times in the two days to number of users who carted the product in the two days (the number of people who have been deduplicated)
 
 3. **Category features** (Feature type = 3):
-
+This part is to generate features related to categories, see our [code](./Features(user and category).ipynb)
 Feature name| type | Explaination
 ---|---|---
 3_number_of_categories_related|statistic|number of categories that user had interaction with
 3_category_concentration_rate|ratio|number of items related over number of categories related
 
 4. **Geo features** (Feature type = 4):
-
+This part is to generate features related to locations, see our [code](./Features(item and geo).ipynb)
 Feature name| type | Explaination
 ---|---|---
 4_geo_view|statistics| the number of total items viewed in the area
@@ -133,7 +133,7 @@ Feature name| type | Explaination
 
 ### 4.2 Interactive Features
 1. **UC(User and Category) features** (Feature type = 5):
-
+This part is to generate features related to users and categories, see our [code](./Features(UC).ipynb)
 Feature name| type | Explaination
 ---|---|---
 5_Number_of_items|statistic| Numbers of items the user had interactions with in that category
@@ -144,7 +144,7 @@ Feature name| type | Explaination
 5_Overnight_purchase_pattern|ratio|whether the user purchase the item one day after browsing, collecting or adding into cart
 
 2. **UI(User and Item) features** (Feature type = 6):
-
+This part is to generate features related to users and items, see our [code](./Features(UI).ipynb)
 Feature name| type | Explaination
 ---|---|---
 6_UI_useritemview|statistic|The number of times the user viewed the item
@@ -156,14 +156,14 @@ Feature name| type | Explaination
 6_UI_useritemcart_usertotalcart|ratio|The number of times the user carts the item / The user's total amount of all items added to the shopping cart
 6_UI_useritembuy_usertotalbuy|ratio|The number of times the user purchases the item / The user's total purchases of all items
 
-Note: some ratio-based indicators in this article have missing indicator data because the denominator is 0. For such indicators, the missing value is filled with 0.
+**Note**: some ratio-based indicators in this article have missing indicator data because the denominator is 0. For such indicators, the missing value is filled with 0.
 
 ## 5. Data preprocessing
 ### 5.1 Dealing with missing data
 Since our features all extracted from  the original data, the missing features have already filled up during the generating process.
 ### 5.2 Standardization
 In order to eliminate the model result error caused by the size of the data itself, we standardize the data.
-![](http://latex.codecogs.com/gif.latex?\\x_{i}^{'}=\frac{x_{i}-\mu }{\sigma})
+![](http://latex.codecogs.com/gif.latex?\\ x_{i}^{'}=\frac{x_{i}-\mu }{\sigma})
 ### 5.3 Imbalanced Sample: Up&downsampling
 Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>
 The downsampling process will affect the metrics we choose, because we found that the accuracy rate of the model on the training set can be seriously affected. So we will choose **precision**, **recall** and **F1** as our metircs. 

@@ -246,8 +246,8 @@ Value|2-days|3-days|4-days
 Training accruacy|0.9878|0.9895|0.9903
 Test accruacy|0.9874|0.9902|0.9913
 F1 Score|92.98%|92.72%|92.84%
-precision|89.60%|89.44%|89.90%
-recall|96.62%|96.25%|95.99%
+Precision|89.60%|89.44%|89.90%
+Recall|96.62%|96.25%|95.99%
  
 We can tell from the results that 2-days data already have a good predicting performance, getting the highest F1 score of 92.98%. Confusion matrix for 2-days data is shown below:
 
@@ -267,8 +267,8 @@ Value|2-days|3-days|4-days
 Training accruacy|0.9625|0.9630|0.9607
 Test accruacy|0.9821|0.9878|0.9889
 F1 Score|80.11%|73.82%|67.68%
-precision|83.53%|84.21%|83.41%
-recall|76.96%|65.71%|56.94%
+Precision|83.53%|84.21%|83.41%
+Recall|76.96%|65.71%|56.94%
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/CM for GBC.png" height="500" width="600"/>
@@ -292,8 +292,8 @@ Value|2-days RF|3-days RF|4-days RF|2-days GBRT|3-days GBRT|4-days GBRT
 Training accruacy|0.9878|0.9895|0.9903|0.9625|0.9630|0.9607
 Test accruacy|0.9874|0.9902|0.9913|0.9821|0.9878|0.9889
 F1 Score|92.98%|92.72%|92.84%|80.11%|73.82%|67.68%
-precision|89.60%|89.44%|89.90%|83.53%|84.21%|83.41%
-recall|96.62%|96.25%|95.99%|76.96%|65.71%|56.94%
+Precision|89.60%|89.44%|89.90%|83.53%|84.21%|83.41%
+Recall|96.62%|96.25%|95.99%|76.96%|65.71%|56.94%
 
 As far as we can see, Random Forest is a better method compared to GBRT, and 2-days data (92573 obs) outperform 3-days (136431 obs)
 and 4-days (182077 obs) regarding F1-score. In a word, applying Random Forest to the lasted two days data is an efficient way to predict purchase behavior of today.

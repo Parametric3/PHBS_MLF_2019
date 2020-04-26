@@ -285,12 +285,12 @@ and 4-days (182077 obs) regarding F1-score. In a word, applying Random Forest to
 **Comment 1** :</p>
 In many models, test accuracy is significatly higher than training accuracy. (PCA+LR, SVM, RF, GBRT) The only result that makes sense to me is LASSO + LR. I think there is something wrong. </p>
 **Answer**:</p>
-We indeed get test accuracy much higher than training in some model, which does not make sense.</p>
-Checking the confusion matrix, we find the True Positive Rate is really low, that is to say this method tends to classify all the observations into Negative. As a result, the  **up & down sampling** method for only the training set instead of for both the training and testing make a difference, leading to higher accuracy in testing set than in training one. </p>
+* We indeed get test accuracy much higher than training in some model, which does not make sense.</p>
+* Checking the confusion matrix, we find the True Positive Rate is really low, that is to say this method tends to classify all the observations into Negative. As a result, the  **up & down sampling** method for only the training set instead of for both the training * and testing make a difference, leading to higher accuracy in testing set than in training one. </p>
 Besides, we think the accuracy ratio is not that important due to the extremely imbalanced samples (much more “Not Purchase” than “Purchase” samples) . As a matter of fact, the tianchi competition only focus on the F1 score.</p>
 
 **Comment 2** :</p>
 Try to interpret the result. What is the feature importance? What is the first two PCA factors meaning?  </p>
-**Answer":</p>
-
-
+**Answer**:</p>
+* Modifying the code, we find only one important component **“4_geo_view”** in the current version, which makes up 99.15% in the first component while other features only make up a very small proportion (based on 2-days data, 3-days and 4-days data get similar results).</p>
+* **4_geo_view** means the total number of items viewed in the area, which illustrates the important effect of geographical factors on consumption behaviors. However, this result also reflects that our data have serious multicollinearity problem and the first component by PCA doesn’t really make sense to some extent.</p>

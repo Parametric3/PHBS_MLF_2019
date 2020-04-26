@@ -176,7 +176,7 @@ Since our features all extracted from  the original data, the missing features h
 ### 5.2 Standardization
 In order to eliminate the model result error caused by the size of the data itself, we standardize the data.
 
-![](http://latex.codecogs.com/gif.latex?\\x_{i}^{'}=\frac{x_{i}-\mu }{\sigma})
+![](http://latex.codecogs.com/gif.latex?\\x_{i}^{'}=\frac{x_{i}-\mu}{\sigma})
 
 ### 5.3 Imbalanced Sample: Up&downsampling
 Through statistics, we have a total of 279,525 samples, while the number of samples with the "label=1"(**'Purchase'**) is only 1,529. The ratio of samples with "label=1" and 'label=0' is around 1:190. In order to eliminate the impact of data imbance on the model results, we upscaled the data with "label=1" and also downscaled the data with "label=0" in the training set. In the end, the ratio of samples with "label=1" and "label=0" is around 1:10.</p>

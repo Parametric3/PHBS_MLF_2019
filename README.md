@@ -211,7 +211,8 @@ Test accruacy|0.995|0.996|0.996
 We get test accruacy much higher than training, which does not make sense. Checking the confusion matrix, we find the True Positive Rate is really low, that is to say this method tends to classify all the observations into Negative, thus resulting the high test accruacy since the buying behavior is so rare.
 
 The above two methods may not have a good performance considering prediction, however, we get a better understanding of our data through them. Possible explanations for the so far unsatisfactory results:</p>
-Logestic Regression is not suitable for our data structure. We consider a large number of features , including large amount of dummy variables, the data structure may be complex, but Logestic Regression is basically a linear model. Besides, reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset, which is consistent with our results.</p>
+* Logestic Regression is not suitable for our data structure. We consider a large number of features , including large amount of dummy variables, the data structure may be complex, but Logestic Regression is basically a linear model. </p>
+* Besides, reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset, which is consistent with our results.</p>
 
 ### Part 2: Practical Models
 ### 1. Random Forest
@@ -266,8 +267,8 @@ Value|2-days Lasso+LR|3-days Lasso+LR|4-days Lasso+LR|2-days PCA+LR|3-days PCA+L
 Training accruacy|0.901|0.922|0.925|0.901|0.922|0.925
 Test accruacy|0.617|0.589|0.667|0.995|0.996|0.996
 
-1. Five features selected in Lasso+LR: '1_user activity', '1_number of items related', '1_time lag', '2_item_view', '4_geo_view', and the coefficients are reasonable to explain. However, the test accuracy is too low.
-2. One principle component is chosen by PCA, which is mostly made up by '4_geo_view'. However, PCA+LR tends to classify all observations into negative.
+* 1. Five features selected in Lasso+LR: '1_user activity', '1_number of items related', '1_time lag', '2_item_view', '4_geo_view', and the coefficients are reasonable to explain. However, the test accuracy is too low.
+* 2. One principle component is chosen by PCA, which is mostly made up by '4_geo_view'. However, PCA+LR tends to classify all observations into negative.
 
 ### Part 2: Practical Models
 Value|2-days RF|3-days RF|4-days RF|2-days GBRT|3-days GBRT|4-days GBRT

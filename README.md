@@ -178,7 +178,7 @@ e.'4_geo_view'
 We use these five features for modeling and the results are as follows:
 
 Evaluation|2-days|3-days
-:---:|:---:|:---:|:---:
+:---:|:---:|:---:
 Training accruacy|0.901|0.922
 Testing accruacy|0.589|0.591
 F1_score|0.00%|0.00%
@@ -192,7 +192,7 @@ Choose 2 principle components can explain more than 90% of the variance in the m
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="650"/>
 </div>
 
-Possible explanations for the unideal results:
+Possible explanations for the unideal results:</p>
 a.Logistic regression is essentially a linear model. We add a large number of features(including dummy variables) to improve the accuracy. However, the data structure is so complex that it may not adapt to a simple linear model. Reviewing the [Tianchi competition](https://www.csdn.net/article/2014-08-27/2821403-the-top-9-of-ali-bigdata-competition/4),it is widely acknowledged that the logistic regression model has a natural disadvantage compared with the random forest and GBRT for this dataset.
 b.As for the higer testing accurary than training accruraty, we think 
 

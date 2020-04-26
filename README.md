@@ -236,9 +236,9 @@ Value|2-days|3-days|4-days
 :---:|:---:|:---:|:---:
 Training accruacy|0.9625|0.922|0.925
 Test accruacy|0.9821|0.591|0.643
-F1 Score|80.11%|
-precision|83.53%|
-recall|76.96%|
+F1 Score|80.11%| |
+precision|83.53%| |
+recall|76.96%| |
 <div align="center">
 <img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/ROC for GBC.jpg" height="450" width="600"/>
 </div>
@@ -247,5 +247,15 @@ We can see that the performance of GBRT is not as good as RF.
 ### Conclusion
 As far as we can see, Random Forest a very suitable method for our data.
 Using the first two days data to predict the third day is 
+
+### Appendix
+## Explanations for Professor's Comments
+**Comment 1** :
+In many models, test accuracy is significatly higher than training accuracy. (PCA+LR, SVM, RF, GBRT) The only result that makes sense to me is LASSO + LR. I think there is something wrong. 
+**Answer":
+
+**Comment 2** :
+Try to interpret the result. What is the feature importance? What is the first two PCA factors meaning? That is as important as increasing accuracy. 
+**Answer":
 
 

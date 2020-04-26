@@ -198,7 +198,7 @@ b. The testing accuracy is too low, so do F1-score&Precision&Recall under 5-fold
 ### 2. PCA + Logistic Regression
 After principle components analysis, we find the first principle component can explain nearly all of the variance in the model (99.95% in 2-days data). PCA reflects that our data have serious multicollinearity problem. Here's the structure of the first component in 2-days data.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="450" width="800"/>
+<img src="https://raw.githubusercontent.com/Parametric3/PHBS_MLF_2019/master/Figs/PCA.png" height="350" width="900"/>
 </div>
 As we can see, except for "4_geo_view", which make up 99.15% in the first component, other features only make up a very small poportion.
 Afterwards, we apply Logistic Regression to the first component and get following results.</p>
